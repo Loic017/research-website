@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+// import { ArrowUpRight } from "lucide-react";
 import { Award } from "@/data/award";
 
 export function AwardEntry({
