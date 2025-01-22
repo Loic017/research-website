@@ -1,10 +1,13 @@
+import { StaticImageData } from 'next/image';
+import frontpage from './frontpage.png';
+
 export interface AboutMe {
   name: string;
   title: string;
   institution: string;
   description: string;
   email: string;
-  imageUrl?: string;
+  imageUrl?: string | StaticImageData;
   blogUrl?: string;
   cvUrl?: string;
   googleScholarUrl?: string;
@@ -18,22 +21,22 @@ export interface AboutMe {
 }
 
 export const aboutMe: AboutMe = {
-  name: "Jane R. Smith",
-  title: "Ph.D. Candidate",
-  institution: "Stanford University",
+  name: "Loic Lorente Lemoine",
+  title: "MPhil Computer Science",
+  institution: "Cardiff University",
   // Note that links work in the description
   description:
-    "I'm a final-year <a href='https://www.stanford.edu'>PhD candidate</a> working at the intersection of causal inference and machine learning. My research focuses on developing robust, interpretable systems that can reason about cause and effect in complex environments.",
-  email: "______@stanford.edu",
-  imageUrl:
-    "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
-  githubUsername: "janesmith",
-  linkedinUsername: "janesmith",
-  twitterUsername: "janesmith",
-  blogUrl: "https://",
+    [`Hi, I am Loic - a recent computer science graduate from Cardiff University. I am currently completing my MPhil in Computer Science and working as a research assistant at Cardiff University. I am a part of the <a href="https://www.agilecps.org/">Agile CPS lab</a> at CU. <br><br> My main interest is in machine learning.`
+    ],
+  email: "reachloic@gmail.com",
+  imageUrl: frontpage,
+  // googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
+  githubUsername: "loic017",
+  linkedinUsername: "lemoineloic",
+  // twitterUsername: "janesmith",
+  blogUrl: "https://fountain.lorentel.com",
   cvUrl: "https://",
-  institutionUrl: "https://www.stanford.edu",
+  // institutionUrl: "https://www.stanford.edu",
   // altName: "",
   // secretDescription: "I like dogs.",
 };

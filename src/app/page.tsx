@@ -11,6 +11,8 @@ import { experienceData } from "@/data/experience";
 import { PortfolioEntry } from "@/components/portfolio-entry";
 import { portfolioData } from "@/data/portfolio";
 import { sectionOrder, Section } from "@/data/section-order";
+import { AwardEntry } from "@/components/award-entry";
+import { awardData } from "@/data/award";
 
 export default function Home() {
   return (
@@ -123,6 +125,21 @@ export default function Home() {
                         <div className="space-y-12">
                           {portfolioData.map((portfolio, index) => (
                             <PortfolioEntry key={index} portfolio={portfolio} />
+                          ))}
+                        </div>
+                      </section>
+                    )
+                  );
+                case Section.Award:
+                  return (
+                    awardData.length > 0 && (
+                      <section key={sectionName}>
+                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
+                          Awards
+                        </h2>
+                        <div className="space-y-12">
+                          {awardData.map((award, index) => (
+                            <AwardEntry key={index} award={award} />
                           ))}
                         </div>
                       </section>
