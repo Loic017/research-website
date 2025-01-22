@@ -5,7 +5,7 @@ export interface AboutMe {
   name: string;
   title: string;
   institution: string;
-  description: string;
+  description: string | String[];
   email: string;
   imageUrl?: string | StaticImageData;
   blogUrl?: string;
