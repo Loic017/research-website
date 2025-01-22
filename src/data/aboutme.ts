@@ -5,7 +5,7 @@ export interface AboutMe {
   name: string;
   title: string;
   institution: string;
-  description: string[];
+  description: string;
   email: string;
   imageUrl?: string | StaticImageData;
   blogUrl?: string;
@@ -26,8 +26,7 @@ export const aboutMe: AboutMe = {
   institution: "Cardiff University",
   // Note that links work in the description
   description:
-    [`Hi, I am Loic - a recent computer science graduate from Cardiff University. I am currently completing my MPhil in Computer Science and working as a research assistant at Cardiff University. I am a part of the <a href="https://www.agilecps.org/">Agile CPS lab</a> at CU. <br><br> My main interest is in machine learning.`
-    ],
+    "Hi, I am Loic - a recent computer science graduate from Cardiff University. I am currently completing my MPhil in Computer Science and working as a research assistant at Cardiff University. I am a part of the <a href='https://www.agilecps.org/'>Agile CPS lab</a> at CU. <br><br> My main interest is in machine learning.",
   email: "reachloic@gmail.com",
   imageUrl: frontpage,
   // googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
