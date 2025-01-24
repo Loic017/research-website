@@ -12,12 +12,12 @@ export const awardData: Award[] = [
         year: "2024",
         institution: "Cardiff University",
         title: "Best Final Year Project, BSc Computer Science and Variants",
-        tldr: "",
+        // tldr: "Awarded for my dissertation: 'design a tiny machine learning model to detect epileptic seizures on wearables'",
     },
     {
         year: "2024",
         institution: "Global Wales, Cardiff University, and Vietnam National University - Ho Chi Minh University of Technology",
         title: "First Prize, Student Poster Competition on “AI, Smart Healthcare, and IoT”",
-        tldr: "",
+        // tldr: "",
     }
 ];
