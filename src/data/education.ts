@@ -14,6 +14,7 @@ export const educationData: Education[] = [
     institution: "Cardiff University",
     degree: "M.Phil. in Computer Science",
     advisor: "Dr. Amir Javed, Dr. Nick Pham",
+    thesis: "A Vehicle CAN (Controller Area Network) On-Board Security Operations Center (SOC)"
   },
   {
     year: "2021—2024",

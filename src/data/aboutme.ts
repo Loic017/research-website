@@ -27,8 +27,10 @@ export const aboutMe: AboutMe = {
   title: "MPhil Computer Science",
   institution: "Cardiff University",
   // Note that links work in the description
-  description:
-    "Hello there, I am Loic - a compsci student @ Cardiff University. I am currently completing my MPhil and working as a research assistant with the <a href='https://www.agilecps.org/'>Agile CPS lab</a>. <br><br> My current focuses involve machine learning for embedded devices and cyber-physical systems.",
+  description: `Hello there! I'm Loic, a Computer Science student at Cardiff University, currently completing my MPhil and working as a research assistant with the Agile CPS Lab.
+  <br></br>
+  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG-based seizure detection with TinyML. Currently, my master's thesis involves developing a Security Operations Center for vehicle CANs." 
+  As such, my research focuses are typically on machine learning for embedded devices and cyber-physical systems.`,
   email: "reachloic@gmail.com",
   imageUrl: frontpage,
   bannerImage: banner,
