@@ -19,5 +19,11 @@ export const awardData: Award[] = [
         institution: "Global Wales, Cardiff University, and Vietnam National University - Ho Chi Minh University of Technology",
         title: "First Prize, Student Poster Competition on “AI, Smart Healthcare, and IoT”",
         // tldr: "",
+    },
+    {
+        year: "2024",
+        institution: "Thales Group and Cardiff University",
+        title: "Thales Group MPhil Scholarship",
+        // tldr: "",
     }
 ];

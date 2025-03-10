@@ -24,7 +24,7 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Loic Lorente Lemoine",
-  title: "MPhil Computer Science",
+  title: "(MPhil) CompSci @",
   institution: "Cardiff University",
   // Note that links work in the description
   description: `Hello there! I'm Loic, a Computer Science student at Cardiff University, currently completing my MPhil and working as a research assistant with the Agile CPS Lab.

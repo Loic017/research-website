@@ -15,7 +15,6 @@ export const experienceData: Experience[] = [
     company: "AgileCPS Labs, Cardiff University",
     description:
       "",
-    // advisor: "Peter Wang",
     companyUrl: "https://www.agilecps.org/",
   },
 ];
