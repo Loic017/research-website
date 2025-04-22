@@ -34,7 +34,7 @@ export const publicationData: Publication[] = [
     title: "Epileptic seizure detection with Tiny Machine Learning - a Preliminary Study",
     authors: "Loic Lemoine, Nhat Pham",
     paperUrl: "https://mobiuk.org/2024/abstract/S4_P2_Lemoine_Seizure.pdf",
-    // codeUrl: "https://github.com/jsmith/robust-causal-discovery",
+    codeUrl: "https://fountain.lorentel.com/projects/Epileptic-Seizure-Detection-with-Tiny-Machine-Learning",
     tldr: "CNN models are created with melspectrogram EEG data to detect three different types of common epileptic seizures. These models are compressed and deployed onto an Arduino platform."
   },
 ];

@@ -29,8 +29,8 @@ export const aboutMe: AboutMe = {
   // Note that links work in the description
   description: `Hello there! I'm Loic, a Computer Science student at Cardiff University, currently completing my MPhil and working as a research assistant with the Agile CPS Lab.
   <br></br>
-  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG-based seizure detection with TinyML. Currently, my master's thesis involves developing a Security Operations Center for vehicle CANs." 
-  As such, my research focuses are typically on machine learning for embedded devices and cyber-physical systems.`,
+  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG-based seizure detection with TinyML. Currently, my master's projects investigates machine learning for defence against vehicle CAN attacks." 
+  As such, my research focuses are on Machine Learning.`,
   email: "reachloic@gmail.com",
   imageUrl: frontpage,
   bannerImage: banner,
