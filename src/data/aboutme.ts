@@ -27,19 +27,21 @@ export const aboutMe: AboutMe = {
   title: "(MPhil) CompSci @",
   institution: "Cardiff University",
   // Note that links work in the description
-  description: `Hello there! I'm Loic, a Computer Science student at Cardiff University, currently completing my MPhil and working as a research assistant with the Agile CPS Lab.
+  description: `Hello there! I'm Loic, an MPhil student at Cardiff University in the School of Computer Science and Informatics and a part of the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
   <br></br>
-  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG-based seizure detection with TinyML. Currently, my master's projects investigates machine learning for defence against vehicle CAN attacks." 
-  As such, my research focuses are on Machine Learning.`,
-  email: "reachloic@gmail.com",
+  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG seizure detection with TinyML. Currently, my master's project investigates machine learning defence for vehicle CAN attacks. Following the completion of my MPhil, I will be commencing as PhD under the supervision of Dr. Nick Pham.
+  <br></br>
+  My research primarily involves exploring machine learning for human sensing and edge AI. 
+  `,
+  email: "lorentelemoinel@cardiff.ac.uk",
   imageUrl: frontpage,
   bannerImage: banner,
   // googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
   githubUsername: "loic017",
   linkedinUsername: "lemoineloic",
   // twitterUsername: "janesmith",
-  blogUrl: "https://fountain.lorentel.com",
-  cvUrl: "https://",
+  // blogUrl: "https://fountain.lorentel.com",
+  // cvUrl: "https://",
   // institutionUrl: "https://www.stanford.edu",
   // altName: "",
   // secretDescription: "I like dogs.",
