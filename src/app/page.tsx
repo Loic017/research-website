@@ -50,8 +50,8 @@ export default function Home() {
                   return (
                     newsData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
-                          Recent Highlights
+                        <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
+                          1. Recent Highlights
                         </h2>
                         <div className="space-y-12">
                           {newsData.map((news, index) => (
@@ -67,8 +67,8 @@ export default function Home() {
                   return (
                     educationData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
-                          Education
+                        <h2 className="font-serif font-bold text-zinc-700 mb-12 tracking-wide uppercase">
+                          2. Education
                         </h2>
                         <div className="space-y-12">
                           {educationData.map((education, index) => (
@@ -82,8 +82,8 @@ export default function Home() {
                   return (
                     publicationData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
-                          Publications
+                        <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
+                          4. Publications
                         </h2>
                         <div className="space-y-12">
                           {publicationData.map((publication, index) => (
@@ -102,8 +102,8 @@ export default function Home() {
                   return (
                     experienceData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                          Experience
+                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                          3. Experience
                         </h2>
                         <div className="space-y-12">
                           {experienceData.map((experience, index) => (
@@ -120,8 +120,8 @@ export default function Home() {
                   return (
                     portfolioData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                          Repos
+                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                          6. Repos
                         </h2>
                         <div className="space-y-12">
                           {portfolioData.map((portfolio, index) => (
@@ -140,12 +140,17 @@ export default function Home() {
                   return (
                     awardData.length > 0 && (
                       <section key={sectionName}>
-                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                          Awards
+                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                          5. Awards
                         </h2>
                         <div className="space-y-12">
                           {awardData.map((award, index) => (
-                            <AwardEntry key={index} award={award} />
+                            <div key={index}>
+                              <AwardEntry key={index} award={award} />
+                              {index < awardData.length - 1 && (
+                                <div className="h-px bg-zinc-200 my-8" />
+                              )}
+                            </div>
                           ))}
                         </div>
                       </section>

@@ -24,7 +24,7 @@ export function PublicationEntry({
       <div className="flex flex-col flex-1">
         <div className="flex flex-row gap-1 items-center mb-2">
           <p className="text-xs text-zinc-500">
-            <b>{publication.conference} {publication.year}</b> ~ {publication.full_conf}
+            <b>{publication.conference} {publication.year}</b> {publication.full_conf}
           </p>
           {publication.award && (
             <div className="group flex px-2 py-1 bg-gradient-to-r from-amber-50 to-rose-50 rounded-md items-center shadow-md border border-amber-100/50 relative overflow-hidden hover:rotate-1 transition-all duration-300">
