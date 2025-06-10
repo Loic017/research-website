@@ -7,10 +7,14 @@ export interface News {
 
 export const newsData: News[] = [
   // If you don't want to show news, just make the array empty.
-  /*{
-    date: "March 2024",
-    title: "Paper accepted at ICML 2024",
-    description: "Our work on causal discovery in time series data has been accepted at ICML 2024.",
-    link: "https://icml.cc/",
-  }*/
+  {
+    date: "June 2025",
+    title: "Extended Abstract Accepted - MobiUK 2025",
+    description: "My extended abstract (with Amanjot Kaur) 'Edge-Based Anomaly Detection in Electric Vehicle Charging Infrastructure with Continual Learning' has been accepted at MobiUK 2025.",
+  },
+  {
+    date: "March 2025",
+    title: "PhD Studentship",
+    description: "I will be joining Dr Nick Pham as a PhD student in the AgileCPS Lab at Cardiff University in 2026.",
+  }
 ];

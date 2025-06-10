@@ -29,9 +29,11 @@ export const aboutMe: AboutMe = {
   // Note that links work in the description
   description: `Hello there! I'm Loic, an MPhil student at Cardiff University in the School of Computer Science and Informatics and a part of the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
   <br></br>
-  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG seizure detection with TinyML. Currently, my master's project investigates machine learning defence for vehicle CAN attacks. Following the completion of my MPhil, I will be commencing as PhD under the supervision of Dr. Nick Pham.
+  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG seizure detection with TinyML. Currently, my master's project investigates machine learning defence for vehicle CAN attacks. Following the completion of my MPhil, I will be commencing a PhD under the supervision of Dr. Nick Pham.
   <br></br>
-  My research primarily involves exploring machine learning for human sensing and edge AI. 
+  My research primarily involves exploring machine learning for human sensing and edge AI.
+  <br></br>
+  <i>Page Contents: Recent Highlights, Education, Experience, Publications, Awards, Repos</i>
   `,
   email: "lorentelemoinel@cardiff.ac.uk",
   imageUrl: frontpage,
@@ -42,7 +44,7 @@ export const aboutMe: AboutMe = {
   // twitterUsername: "janesmith",
   // blogUrl: "https://fountain.lorentel.com",
   // cvUrl: "https://",
-  // institutionUrl: "https://www.stanford.edu",
+  institutionUrl: "https://www.cardiff.ac.uk/",
   // altName: "",
   // secretDescription: "I like dogs.",
 };

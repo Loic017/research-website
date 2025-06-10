@@ -39,11 +39,6 @@ export default function Home() {
                   className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
                   dangerouslySetInnerHTML={{ __html: aboutMe.description }}
                 />
-                <Image
-                  src={aboutMe.bannerImage || ""}
-                  alt={aboutMe.name}
-                  className="object-fill rounded-xl mt-6"
-                />
               </section>
             )}
 
@@ -56,7 +51,7 @@ export default function Home() {
                     newsData.length > 0 && (
                       <section key={sectionName}>
                         <h2 className="font-serif text-l mb-12 tracking-wide uppercase">
-                          News
+                          Recent Highlights
                         </h2>
                         <div className="space-y-12">
                           {newsData.map((news, index) => (
@@ -133,6 +128,11 @@ export default function Home() {
                             <PortfolioEntry key={index} portfolio={portfolio} />
                           ))}
                         </div>
+                        <Image
+                          src={aboutMe.bannerImage || ""}
+                          alt={aboutMe.name}
+                          className="object-fill rounded-xl mt-6 opacity-50 hover:opacity-0 transition-opacity duration-300"
+                        />
                       </section>
                     )
                   );
