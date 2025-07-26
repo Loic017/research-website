@@ -24,16 +24,19 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Loic Lorente Lemoine",
-  title: "(MPhil) CompSci @",
+  title: "MPhil (Incoming PhD) CompSci",
   institution: "Cardiff University",
   // Note that links work in the description
-  description: `Hello there! I'm Loic, an MPhil student at Cardiff University in the School of Computer Science and Informatics and a part of the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
+  description: `Hello there! 🌊 I'm Loic, an MPhil student at Cardiff University in the School of Computer Science and Informatics and with the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
   <br></br>
-  I earned my BSc in Computer Science from CU in 2024, graduating with First Class Honours after completing my dissertation on EEG seizure detection with TinyML. Currently, my master's project investigates machine learning defence for vehicle CAN attacks. Following the completion of my MPhil, I will be commencing a PhD under the supervision of Dr. Nick Pham.
+  I earned my BSc in Computer Science from Cardiff University in 2024, graduating with First Class Honours. My dissertation on EEG seizure detection with TinyML was presented the best undergraduate dissertation award. 
   <br></br>
-  My research primarily involves exploring machine learning for human sensing and edge AI.
+  Currently, I am undergoing an MPhil under the supervision of Dr Amir Javed, investigating machine learning intrusion detection for vehicular CAN systems.
   <br></br>
-  <i>Page Contents: Recent Highlights, Education, Experience, Publications, Awards, Repos</i>
+  Following the completion of my MPhil, I will be commencing a PhD (🎉) under the supervision of Dr. Nick Pham. 
+  <br></br>
+  My research primarily involves exploring machine learning for human sensing and edge computing.
+  <br></br>
   `,
   email: "lorentelemoinel@cardiff.ac.uk",
   imageUrl: frontpage,
@@ -43,7 +46,7 @@ export const aboutMe: AboutMe = {
   linkedinUsername: "lemoineloic",
   // twitterUsername: "janesmith",
   // blogUrl: "https://fountain.lorentel.com",
-  // cvUrl: "https://",
+  cvUrl: "https://lorentel.com",
   institutionUrl: "https://www.cardiff.ac.uk/",
   // altName: "",
   // secretDescription: "I like dogs.",

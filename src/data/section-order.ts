@@ -9,9 +9,9 @@ export enum Section {
 
 export const sectionOrder = [
   Section.News,
+  Section.Portfolio,
+  Section.Publication,
   Section.Education,
   Section.Experience,
-  Section.Publication,
   Section.Award,
-  Section.Portfolio,
 ];

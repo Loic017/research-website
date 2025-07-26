@@ -12,13 +12,13 @@ export const awardData: Award[] = [
         year: "2025",
         institution: "Cardiff University",
         title: "PhD Studentship",
-        // tldr: "",
+        tldr: "Fully funded PhD studentship in the School of Computer Science and Informatics.",
     },
     {
         year: "2024",
-        institution: "Cardiff University",
-        title: "Best Final Year Project, School of Computer Science and Informatics",
-        tldr: "Awarded for my dissertation: 'Design a tiny machine learning model to detect epileptic seizures on wearables'",
+        institution: "Thales Group and Cardiff University",
+        title: "Thales Group MPhil Scholarship",
+        tldr: "Funded MPhil scholarship in the School of Computer Science and Informatics.",
     },
     {
         year: "2024",
@@ -28,8 +28,8 @@ export const awardData: Award[] = [
     },
     {
         year: "2024",
-        institution: "Thales Group and Cardiff University",
-        title: "Thales Group MPhil Scholarship",
-        // tldr: "",
+        institution: "Cardiff University",
+        title: "Best Final Year Project, School of Computer Science and Informatics",
+        tldr: "Awarded for my dissertation: 'Design a tiny machine learning model to detect epileptic seizures on wearables'",
     }
 ];

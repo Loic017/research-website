@@ -19,17 +19,34 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
       {/* Don't have a great call on whether max-w-screen-xl is better */}
+      {/* <div className="sticky top-0 left-0 z-50 p-2">
+        <p
+          className="font-serif text-sm leading-relaxed [&_a]:underline [&_a:hover]:text-blue-900"
+          dangerouslySetInnerHTML={{
+            __html: `
+        <i>Quick Links:
+        <a href="#recent-highlights">Recent Highlights</a> <b>|</b> 
+        <a href="#research">Research</a> <b>|</b>
+        <a href="#publications">Publications</a> <b>|</b>
+        <a href="#education">Education</a> <b>|</b>
+        <a href="#experience">Experience</a> <b>|</b>
+        <a href="#awards">Awards</a></i>
+      `,
+          }}
+        />
+      </div> */}
       <div className="max-w-screen-lg mx-auto px-8 py-24">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
           {/* Left Column - Fixed Info */}
           <div className="col-span-12 md:col-span-4 space-y-12 mb-8 md:mb-0">
             {/* Profile */}
-            <div className="md:sticky top-12 space-y-8">
+            <div className="">
+              <div className="">
+              </div>
               <ProfileSection aboutMe={aboutMe} />
             </div>
           </div>
-
           {/* Right Column - Scrolling Content */}
           <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
             {/* About section is typically first */}
@@ -39,6 +56,20 @@ export default function Home() {
                   className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
                   dangerouslySetInnerHTML={{ __html: aboutMe.description }}
                 />
+                {/* <p
+                  className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      <i>Quick Links:
+                      <a href="#recent-highlights">Recent Highlights</a> | 
+                      <a href="#research">Research</a> |
+                      <a href="#publications">Publications</a> | 
+                      <a href="#education">Education</a> | 
+                      <a href="#experience">Experience</a> | 
+                      <a href="#awards">Awards</a></i>
+                    `,
+                  }}
+                /> */}
               </section>
             )}
 
@@ -49,9 +80,9 @@ export default function Home() {
                 case Section.News:
                   return (
                     newsData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="recent-highlights">
                         <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
-                          1. Recent Highlights
+                          Recent Highlights
                         </h2>
                         <div className="space-y-12">
                           {newsData.map((news, index) => (
@@ -66,9 +97,9 @@ export default function Home() {
                 case Section.Education:
                   return (
                     educationData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="education">
                         <h2 className="font-serif font-bold text-zinc-700 mb-12 tracking-wide uppercase">
-                          2. Education
+                          Education
                         </h2>
                         <div className="space-y-12">
                           {educationData.map((education, index) => (
@@ -81,9 +112,9 @@ export default function Home() {
                 case Section.Publication:
                   return (
                     publicationData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="publications">
                         <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
-                          4. Publications
+                          Publications
                         </h2>
                         <div className="space-y-12">
                           {publicationData.map((publication, index) => (
@@ -101,9 +132,9 @@ export default function Home() {
                 case Section.Experience:
                   return (
                     experienceData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="experience">
                         <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
-                          3. Experience
+                          Experience
                         </h2>
                         <div className="space-y-12">
                           {experienceData.map((experience, index) => (
@@ -119,9 +150,9 @@ export default function Home() {
                 case Section.Portfolio:
                   return (
                     portfolioData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="research">
                         <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
-                          6. Repos
+                          Research
                         </h2>
                         <div className="space-y-12">
                           {portfolioData.map((portfolio, index) => (
@@ -139,9 +170,9 @@ export default function Home() {
                 case Section.Award:
                   return (
                     awardData.length > 0 && (
-                      <section key={sectionName}>
+                      <section key={sectionName} id="awards">
                         <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
-                          5. Awards
+                          Awards
                         </h2>
                         <div className="space-y-12">
                           {awardData.map((award, index) => (
