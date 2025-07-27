@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
       {/* Don't have a great call on whether max-w-screen-xl is better */}
-      {/* <div className="sticky top-0 left-0 z-50 p-2">
+      <div className="md:top-0 left-0 z-50 p-2">
         <p
           className="font-serif text-sm leading-relaxed [&_a]:underline [&_a:hover]:text-blue-900"
           dangerouslySetInnerHTML={{
@@ -34,7 +34,7 @@ export default function Home() {
       `,
           }}
         />
-      </div> */}
+      </div>
       <div className="max-w-screen-lg mx-auto px-8 py-24">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
