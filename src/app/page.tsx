@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 import { EducationEntry } from "@/components/education-entry";
 import { educationData } from "@/data/education";
@@ -14,28 +15,58 @@ import { portfolioData } from "@/data/portfolio";
 import { sectionOrder, Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
+import { useState } from "react";
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#FFFCF8]">
       {/* Don't have a great call on whether max-w-screen-xl is better */}
-      <div className="md:top-0 left-0 z-50 p-2">
-        <p
-          className="font-serif text-sm leading-relaxed [&_a]:underline [&_a:hover]:text-blue-900"
-          dangerouslySetInnerHTML={{
-            __html: `
-        <i>Quick Links:
-        <a href="#recent-highlights">Recent Highlights</a> <b>|</b> 
-        <a href="#research">Research</a> <b>|</b>
-        <a href="#publications">Publications</a> <b>|</b>
-        <a href="#education">Education</a> <b>|</b>
-        <a href="#experience">Experience</a> <b>|</b>
-        <a href="#awards">Awards</a></i>
-      `,
-          }}
-        />
+      {/* Quick Links Bar with Burger Menu */}
+      <div className="fixed left-0 top-0 z-50 w-full bg-[#FFFCF8]">
+        {/* Burger button for mobile */}
+        <button
+          className="md:hidden absolute left-4 top-4 p-2 z-10 italic text-sm leading-relaxed text-zinc-700 bg-[#FFFCF8] rounded-lg shadow-md"
+          aria-label="Open quick links"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          🍔 {menuOpen ? "Close ←" : "Menu →"}
+        </button>
+        {/* Quick links: vertical pane on mobile, horizontal bar on desktop */}
+        <div
+          className={`
+            transition-all duration-300
+            ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"}
+            md:max-h-none md:py-2 md:opacity-100
+            w-full
+            bg-[#FFFCF8]
+            md:bg-transparent
+            md:static
+            absolute left-0 top-full
+            md:top-0
+            shadow-sm
+          `}
+        >
+          <nav
+            className={`
+        flex flex-col items-center gap-4
+        md:flex-row md:justify-center md:gap-2
+        text-sm leading-relaxed text-zinc-700 text-center
+      `}
+          >
+            <span className="hidden md:inline italic">Quick Links →</span>
+            <a href="#" className="underline hover:text-blue-900 mx-2 italic">Start</a>
+            <a href="#recent-highlights" className="underline hover:text-blue-900 mx-2 italic">Recent Highlights</a>
+            <a href="#research" className="underline hover:text-blue-900 mx-2 italic">Research</a>
+            <a href="#publications" className="underline hover:text-blue-900 mx-2 italic">Publications</a>
+            <a href="#education" className="underline hover:text-blue-900 mx-2 italic">Education</a>
+            <a href="#experience" className="underline hover:text-blue-900 mx-2">Experience</a>
+            <a href="#awards" className="underline hover:text-blue-900 mx-2">Awards</a>
+          </nav>
+        </div>
       </div>
-      <div className="max-w-screen-lg mx-auto px-8 py-24">
+      <div className="max-w-screen-lg mx-auto px-8 py-28">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
           {/* Left Column - Fixed Info */}
@@ -81,7 +112,7 @@ export default function Home() {
                   return (
                     newsData.length > 0 && (
                       <section key={sectionName} id="recent-highlights">
-                        <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                           Recent Highlights
                         </h2>
                         <div className="space-y-12">
@@ -91,6 +122,9 @@ export default function Home() {
                             </div>
                           ))}
                         </div>
+                        <div className="flex justify-end items-center gap-2 mt-16">
+                          <p className="text-sm text-zinc-600 italic cursor-not-allowed line-through">View all highlights here →</p>
+                        </div>
                       </section>
                     )
                   );
@@ -98,7 +132,7 @@ export default function Home() {
                   return (
                     educationData.length > 0 && (
                       <section key={sectionName} id="education">
-                        <h2 className="font-serif font-bold text-zinc-700 mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] text-zinc-700 mb-12 tracking-wide uppercase border-b border-black">
                           Education
                         </h2>
                         <div className="space-y-12">
@@ -113,7 +147,7 @@ export default function Home() {
                   return (
                     publicationData.length > 0 && (
                       <section key={sectionName} id="publications">
-                        <h2 className="font-serif font-bold text-l mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                           Publications
                         </h2>
                         <div className="space-y-12">
@@ -126,6 +160,12 @@ export default function Home() {
                             </div>
                           ))}
                         </div>
+                        <div className="flex justify-end items-center gap-2 mt-16">
+                          <p className="text-sm text-zinc-600 italic opacity-35">* means co-first author</p>
+                        </div>
+                        <div className="flex justify-end items-center gap-2 mt-2">
+                          <p className="text-sm text-zinc-600 italic cursor-not-allowed line-through">View all publications here →</p>
+                        </div>
                       </section>
                     )
                   );
@@ -133,7 +173,7 @@ export default function Home() {
                   return (
                     experienceData.length > 0 && (
                       <section key={sectionName} id="experience">
-                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                           Experience
                         </h2>
                         <div className="space-y-12">
@@ -151,7 +191,7 @@ export default function Home() {
                   return (
                     portfolioData.length > 0 && (
                       <section key={sectionName} id="research">
-                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                           Research
                         </h2>
                         <div className="space-y-12">
@@ -159,11 +199,6 @@ export default function Home() {
                             <PortfolioEntry key={index} portfolio={portfolio} />
                           ))}
                         </div>
-                        <Image
-                          src={aboutMe.bannerImage || ""}
-                          alt={aboutMe.name}
-                          className="object-fill rounded-xl mt-6 opacity-50 hover:opacity-0 transition-opacity duration-300"
-                        />
                       </section>
                     )
                   );
@@ -171,7 +206,7 @@ export default function Home() {
                   return (
                     awardData.length > 0 && (
                       <section key={sectionName} id="awards">
-                        <h2 className="font-serif font-bold text-md mb-12 tracking-wide uppercase">
+                        <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                           Awards
                         </h2>
                         <div className="space-y-12">
@@ -184,13 +219,19 @@ export default function Home() {
                             </div>
                           ))}
                         </div>
+                        <Image
+                          src={aboutMe.bannerImage || ""}
+                          alt={aboutMe.name}
+                          className="object-fill rounded-xl mt-6 opacity-50 hover:opacity-0 transition-opacity duration-300"
+                        />
                       </section>
                     )
                   );
                 default:
                   return null;
               }
-            })}
+            })
+            }
           </div>
         </div>
       </div>

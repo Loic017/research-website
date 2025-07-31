@@ -14,20 +14,20 @@ export const educationData: Education[] = [
     institution: "Cardiff University",
     degree: "PhD Computer Science",
     advisor: "Dr. Nick Pham, Prof. Jonathan Bisson , Dr. Jonas Beuchert",
-    thesis: "..."
+    thesis: " Continuous stress monitoring with biosensing wearable"
   },
   {
     year: "2024—Present",
     institution: "Cardiff University",
     degree: "MPhil Computer Science",
     advisor: "Dr. Amir Javed, Dr. Nick Pham",
-    thesis: "A Vehicle CAN (Controller Area Network) On-Board Security Operations Center (SOC)"
+    thesis: "Machine Learning Intrusion Detection Sytems for Vehicular Networks"
   },
   {
     year: "2021—2024",
     institution: "Cardiff University",
     degree: "BSc Computer Science",
-    thesis: "Design a tiny machine learning model to detect epileptic seizures on wearables",
+    thesis: "TinyML for wearable seizure detection",
     // Optional links to thesis
     thesisUrl: "https://drive.google.com/file/d/1W1lrBvBA_GrSyujQJyJSLgKLstS-cuaG/view?usp=sharing"
   },
