@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
-import car from './car.webp';
-import melspectrograms from './melspectrograms.webp';
+// import car from './car.webp';
+// import melspectrograms from './melspectrograms.webp';
 
 export interface Portfolio {
   title: string;
