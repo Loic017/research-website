@@ -7,6 +7,10 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-padding-top: 64px
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
