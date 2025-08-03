@@ -76,7 +76,7 @@ export default function Home() {
         return (
           educationData.length > 0 && (
             <section id="education">
-              <h2 className="font-serif font-bold text-[1.1rem] text-zinc-700 mb-12 tracking-wide uppercase border-b border-black">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
                 Education
               </h2>
               <div className="space-y-12">
