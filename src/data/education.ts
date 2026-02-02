@@ -17,7 +17,7 @@ export const educationData: Education[] = [
     thesis: " Continuous stress monitoring with biosensing wearable"
   },
   {
-    year: "2024—Present",
+    year: "2024—2026",
     institution: "Cardiff University",
     degree: "MPhil Computer Science",
     advisor: "Dr. Amir Javed, Dr. Nick Pham",

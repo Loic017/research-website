@@ -24,19 +24,16 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Loic Lorente Lemoine",
-  title: "MPhil CompSci",
+  title: "Incoming PhD CompSci",
   institution: "Cardiff University",
   // Note that links work in the description
-  description: `Hello there! 🌊 I'm Loic, an MPhil student at Cardiff University in the School of Computer Science and Informatics and with the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
-  <br></br>
-  I earned my BSc in Computer Science from Cardiff University in 2024, graduating with First Class Honours. My dissertation on EEG seizure detection with TinyML was presented with the best undergraduate dissertation award. 
-  <br></br>
-  Currently, I am undergoing an MPhil under the supervision of Dr Amir Javed, investigating machine learning intrusion detection for vehicular 🚙 systems.
-  <br></br>
-  Following the completion of my MPhil, I will be commencing a PhD (🎉) under the supervision of Dr. Nick Pham. 
-  <br></br>
+  description: `Hello there! 🌊 I'm Loic, an incoming PhD student at Cardiff University 🏴󠁧󠁢󠁷󠁬󠁳󠁿 in the School of Computer Science and Informatics and with the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
+  <ul style="margin-top:10px;margin-bottom:10px;padding-left:0.5rem">
+    <li style="margin:0 0 4px 0">> I finished my <b>BSc in Computer Science from Cardiff University</b> in 2024, graduating with First Class Honours. My dissertation on EEG seizure detection with TinyML was presented with the best undergraduate dissertation award.</li>
+    <li style="margin:0 0 4px 0">> I have completed an <b>MPhil</b> under the supervision of Dr Amir Javed, investigating machine learning intrusion detection for vehicular 🚙 systems.</li>
+    <li style="margin:0 0 4px 0">> I will be commencing a <b>PhD (🎉)</b> under the supervision of Dr. Nick Pham in April 2026.</li>
+  </ul>
   My research primarily involves exploring machine learning for human sensing and edge computing.
-  <br></br>
   `,
   email: "lorentelemoinel@cardiff.ac.uk",
   imageUrl: frontpage,

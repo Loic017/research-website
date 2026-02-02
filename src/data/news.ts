@@ -8,6 +8,11 @@ export interface News {
 export const newsData: News[] = [
   // If you don't want to show news, just make the array empty.
   {
+    date: "January 2026",
+    title: "MPhil Viva Completed: No Corrections 🎉",
+    description: "I have successfully completed my MPhil.",
+  },
+  {
     date: "June 2025",
     title: "Extended Abstract Accepted - MobiUK 2025 Symposium",
     description: "I will be presenting the extended abstract 'Edge-Based Anomaly Detection in Electric Vehicle Charging Infrastructure with Continual Learning' at the MobiUK 2025 Symposium in Edinburgh.",
