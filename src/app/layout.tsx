@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Noto_Serif, PT_Serif } from "next/font/google";
 import "./globals.css";
 import { aboutMe } from "@/data/aboutme";
 import { customMetadata } from "@/data/title-description";
+import { ThemeToggle } from "@/components/theme-toggle";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -40,12 +41,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function() { try { var theme = localStorage.getItem('theme'); if (theme === 'dark') document.documentElement.classList.add('dark'); } catch(e) {} })()`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} ${ptSerif.variable} antialiased`}
       >
         <main className="">{children}</main>
-        <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-[#FFFCF8]">
+        <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-[#FFFCF8] dark:bg-[#0a0a0a]">
           <div className="flex flex-row mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between ">
             <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
               <p>
@@ -57,7 +65,8 @@ export default function RootLayout({
                 </p>
               )}
             </div>
-            <div className="mb-4">
+            <div className="mb-4 flex items-center gap-4">
+              <ThemeToggle />
               <p className="text-sm text-neutral-500 dark:text-neutral-500 justify">
                 Built with{" "}
                 <a

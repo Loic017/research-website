@@ -5,13 +5,13 @@ export enum Section {
   Publication = "publication",
   News = "news",
   Award = 'award',
+  Timeline = 'timeline',
 }
 
 export const sectionOrder = [
   Section.News,
   Section.Portfolio,
   Section.Publication,
-  Section.Education,
-  Section.Experience,
+  Section.Timeline,
   Section.Award,
 ];

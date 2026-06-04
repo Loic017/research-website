@@ -11,6 +11,12 @@ export const awardData: Award[] = [
     {
         year: "2025",
         institution: "Cardiff University",
+        title: "ASSET'26 Scholarship",
+        tldr: "Accepted into ASSET'26 @ ACM Mobisys 2026 + Included Scholarship.",
+    },
+    {
+        year: "2025",
+        institution: "Cardiff University",
         title: "PhD Studentship",
         tldr: "Fully funded PhD studentship in the School of Computer Science and Informatics.",
     },

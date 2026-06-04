@@ -16,35 +16,75 @@ import { portfolioData } from "@/data/portfolio";
 import { Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
-import { useState } from "react";
+import { useState, useCallback, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const quickLinks = [
   { label: "Start", section: null },
-  { label: "Recent Highlights", section: Section.News },
   { label: "Research", section: Section.Portfolio },
   { label: "Publications", section: Section.Publication },
-  { label: "Education", section: Section.Education },
-  { label: "Experience", section: Section.Experience },
+  { label: "Timeline", section: Section.Timeline },
   { label: "Awards", section: Section.Award },
 ];
 
-export default function Home() {
+function HomeContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSection = searchParams.get("section") as Section | null;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedSection, setSelectedSection] = useState<Section | null>(null);
+  const [selectedSection, setSelectedSection] = useState<Section | null>(
+    initialSection && Object.values(Section).includes(initialSection as Section)
+      ? initialSection
+      : null
+  );
+
+  const navigateTo = useCallback((section: Section | null) => {
+    setSelectedSection(section);
+    setMenuOpen(false);
+    const params = new URLSearchParams(window.location.search);
+    if (section) {
+      params.set("section", section);
+    } else {
+      params.delete("section");
+    }
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    window.history.replaceState(null, "", newUrl);
+  }, []);
 
   // Helper to render the selected section
   const renderSection = () => {
     if (selectedSection === null) {
-      // Only show about section
+      // Show about section and recent highlights
       return (
-        aboutMe.description && (
-          <section>
-            <p
-              className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
-              dangerouslySetInnerHTML={{ __html: aboutMe.description }}
-            />
-          </section>
-        )
+        <>
+          {aboutMe.description && (
+            <section>
+              <div
+                className="font-serif text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 [&_a]:underline [&_a]:text-zinc-900 dark:[&_a]:text-zinc-100 [&_a:hover]:text-zinc-600 dark:[&_a:hover]:text-zinc-400"
+                dangerouslySetInnerHTML={{ __html: aboutMe.description }}
+              />
+            </section>
+          )}
+          {newsData.length > 0 && (
+            <section id="recent-highlights">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+                Recent Highlights
+              </h2>
+              <div className="space-y-6">
+                {newsData.map((news, index) => (
+                  <div key={index}>
+                    <NewsEntry news={news} />
+                    {index < newsData.length - 1 && (
+                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 mt-6" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
       );
     }
 
@@ -53,7 +93,7 @@ export default function Home() {
         return (
           newsData.length > 0 && (
             <section id="recent-highlights">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
                 Recent Highlights
               </h2>
               <div className="space-y-12">
@@ -61,7 +101,7 @@ export default function Home() {
                   <div key={index}>
                     <NewsEntry news={news} />
                     {index < newsData.length - 1 && (
-                      <div className="h-px bg-zinc-200 my-8" />
+                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
                     )}
                   </div>
                 ))}
@@ -72,18 +112,34 @@ export default function Home() {
             </section>
           )
         );
-      case Section.Education:
+      case Section.Timeline:
         return (
-          educationData.length > 0 && (
-            <section id="education">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
-                Education
-              </h2>
-              <div className="space-y-12">
-                {educationData.map((education, index) => (
-                  <EducationEntry key={index} education={education} />
-                ))}
-              </div>
+          (educationData.length > 0 || experienceData.length > 0) && (
+            <section id="timeline">
+              {educationData.length > 0 && (
+                <>
+                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+                    Education
+                  </h2>
+                  <div className="space-y-12 mb-16">
+                    {educationData.map((education, index) => (
+                      <EducationEntry key={index} education={education} />
+                    ))}
+                  </div>
+                </>
+              )}
+              {experienceData.length > 0 && (
+                <>
+                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+                    Experience
+                  </h2>
+                  <div className="space-y-12">
+                    {experienceData.map((experience, index) => (
+                      <ExperienceEntry key={index} experience={experience} />
+                    ))}
+                  </div>
+                </>
+              )}
             </section>
           )
         );
@@ -91,7 +147,7 @@ export default function Home() {
         return (
           publicationData.length > 0 && (
             <section id="publications">
-              <h2 className="font-serif font-bold text-[1.1rem] tracking-wide uppercase border-b border-black">
+              <h2 className="font-serif font-bold text-[1.1rem] tracking-wide uppercase border-b border-black dark:border-zinc-600">
                 Publications
               </h2>
               <div className="flex justify-end items-center gap-2 mb-8">
@@ -102,7 +158,7 @@ export default function Home() {
                   <div key={index}>
                     <PublicationEntry publication={publication} />
                     {index < publicationData.length - 1 && (
-                      <div className="h-px bg-zinc-200 my-8" />
+                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
                     )}
                   </div>
                 ))}
@@ -113,29 +169,11 @@ export default function Home() {
             </section>
           )
         );
-      case Section.Experience:
-        return (
-          experienceData.length > 0 && (
-            <section id="experience">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
-                Experience
-              </h2>
-              <div className="space-y-12">
-                {experienceData.map((experience, index) => (
-                  <ExperienceEntry
-                    key={index}
-                    experience={experience}
-                  />
-                ))}
-              </div>
-            </section>
-          )
-        );
       case Section.Portfolio:
         return (
           portfolioData.length > 0 && (
             <section id="research">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
                 Research
               </h2>
               <div className="space-y-12">
@@ -143,7 +181,7 @@ export default function Home() {
                   <div key={index}>
                     <PortfolioEntry key={index} portfolio={portfolio} />
                     {index < portfolioData.length - 1 && (
-                      <div className="h-px bg-zinc-200 my-8" />
+                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
                     )}
                   </div>
                 ))}
@@ -155,7 +193,7 @@ export default function Home() {
         return (
           awardData.length > 0 && (
             <section id="awards">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
                 Awards
               </h2>
               <div className="space-y-12">
@@ -163,7 +201,7 @@ export default function Home() {
                   <div key={index}>
                     <AwardEntry key={index} award={award} />
                     {index < awardData.length - 1 && (
-                      <div className="h-px bg-zinc-200 my-8" />
+                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
                     )}
                   </div>
                 ))}
@@ -182,17 +220,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFCF8]">
+    <div className="min-h-screen bg-[#FFFCF8] dark:bg-[#111111]">
       {/* Quick Links Bar with Burger Menu */}
-      <div className="fixed left-0 top-0 z-50 w-full bg-[#FFFCF8]">
+      <div className="fixed left-0 top-0 z-50 w-full bg-[#FFFCF8] dark:bg-[#111111] flex items-center justify-between">
         {/* Burger button for mobile */}
-        <button
-          className="md:hidden absolute left-4 top-4 p-2 z-10 italic text-sm leading-relaxed text-zinc-700 bg-[#FFFCF8] rounded-lg shadow-md"
-          aria-label="Open quick links"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          🍔 {menuOpen ? "Close ←" : "Menu →"}
-        </button>
+        <div className="flex items-center md:hidden ml-4">
+          <button
+            className="p-2 z-10 italic text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 bg-[#FFFCF8] dark:bg-[#111111] rounded-lg shadow-md"
+            aria-label="Open quick links"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? "Close ←" : "Menu →"}
+          </button>
+        </div>
         {/* Quick links: vertical pane on mobile, horizontal bar on desktop */}
         <div
           className={`
@@ -200,7 +240,7 @@ export default function Home() {
             ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"}
             md:max-h-none md:py-2 md:opacity-100
             w-full
-            bg-[#FFFCF8]
+            bg-[#FFFCF8] dark:bg-[#111111]
             md:bg-transparent
             md:static
             absolute left-0 top-full
@@ -212,19 +252,18 @@ export default function Home() {
             className={`
               flex flex-col items-center gap-4
               md:flex-row md:justify-center md:gap-2
-              text-sm leading-relaxed text-zinc-700 text-center
+              text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 text-center
             `}
           >
             {/* <span className="hidden md:inline italic">Navigate →</span> */}
             {quickLinks.map((link) => (
               <button
                 key={link.label}
-                className={`underline hover:text-blue-900 mx-2 italic bg-transparent border-none p-0 cursor-pointer
-      ${selectedSection === link.section ? "font-bold text-blue-900" : ""}
+                className={`underline hover:text-blue-900 dark:hover:text-blue-300 mx-2 italic bg-transparent border-none p-0 cursor-pointer
+      ${selectedSection === link.section ? "font-bold text-blue-900 dark:text-blue-300" : ""}
     `}
                 onClick={() => {
-                  setSelectedSection(link.section);
-                  setMenuOpen(false);
+                  navigateTo(link.section);
                 }}
               >
                 {link.label}
@@ -246,11 +285,19 @@ export default function Home() {
             </div>
           </div>
           {/* Right Column - Scrolling Content */}
-          <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
+          <div className={`col-span-12 md:col-span-7 md:col-start-6 ${selectedSection === null ? 'space-y-12' : 'space-y-24'}`}>
             {renderSection()}
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense>
+      <HomeContent />
+    </Suspense>
   );
 }
