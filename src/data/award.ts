@@ -9,8 +9,8 @@ export interface Award {
 export const awardData: Award[] = [
     // If you don't want to show publications, just make the array empty.
     {
-        year: "2025",
-        institution: "Cardiff University",
+        year: "2026",
+        institution: "ASSET @ Mobisys 2026",
         title: "ASSET'26 Scholarship",
         tldr: "Accepted into ASSET'26 @ ACM Mobisys 2026 + Included Scholarship.",
     },

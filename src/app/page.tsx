@@ -230,7 +230,7 @@ function HomeContent() {
             aria-label="Open quick links"
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? "Close ←" : "Menu →"}
+            {menuOpen ? "✕ Close ←" : "🍔 Menu →"}
           </button>
         </div>
         {/* Quick links: vertical pane on mobile, horizontal bar on desktop */}
