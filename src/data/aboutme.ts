@@ -39,7 +39,7 @@ export const aboutMe: AboutMe = {
   imageUrl: frontpage,
   bannerImage: banner,
   // googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
-  githubUsername: "loic017",
+  githubUsername: "loic-lemon",
   linkedinUsername: "lemoineloic",
   // twitterUsername: "janesmith",
   // blogUrl: "https://fountain.lorentel.com",
