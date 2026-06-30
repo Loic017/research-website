@@ -45,7 +45,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function() { try { var theme = localStorage.getItem('theme'); if (theme === 'dark') document.documentElement.classList.add('dark'); } catch(e) {} })()`,
+            __html: `(function() { try { var stored = localStorage.getItem('theme'); var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; var theme = stored || (prefersDark ? 'dark' : 'light'); if (theme === 'dark') document.documentElement.classList.add('dark'); } catch(e) {} })()`,
           }}
         />
       </head>
@@ -53,25 +53,25 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${notoSerif.variable} ${ptSerif.variable} antialiased`}
       >
         <main className="">{children}</main>
-        <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-[#FFFCF8] dark:bg-[#0a0a0a]">
+        <footer className="border-t border-border bg-background">
           <div className="flex flex-row mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between ">
-            <div className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
+            <div className="mb-4 text-sm text-muted">
               <p>
                 © {new Date().getFullYear()} {aboutMe.name}.
               </p>
               {aboutMe.secretDescription && (
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-4">
+                <p className="text-xs text-muted mt-4">
                   {aboutMe.secretDescription}
                 </p>
               )}
             </div>
             <div className="mb-4 flex items-center gap-4">
               <ThemeToggle />
-              <p className="text-sm text-neutral-500 dark:text-neutral-500 justify">
+              <p className="text-sm text-muted justify">
                 Built with{" "}
                 <a
                   href="https://github.com/tovacinni/research-website-template"
-                  className="underline hover:text-neutral-800 dark:hover:text-neutral-300 transition-colors"
+                  className="underline hover:text-foreground transition-colors"
                 >
                   research-website-template
                 </a>

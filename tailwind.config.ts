@@ -12,6 +12,18 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        surface: {
+          DEFAULT: "var(--surface)",
+          2: "var(--surface-2)",
+        },
+        muted: "var(--muted)",
+        border: {
+          DEFAULT: "var(--border)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-fg)",
+        },
       },
     },
   },

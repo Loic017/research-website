@@ -16,7 +16,7 @@ import { portfolioData } from "@/data/portfolio";
 import { Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
-import { useState, useCallback, useEffect, Suspense } from "react";
+import { useState, useCallback, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const quickLinks = [
@@ -37,6 +37,20 @@ function HomeContent() {
       ? initialSection
       : null
   );
+
+  const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    navRefs.current.forEach((btn) => {
+      if (!btn) return;
+      const before = window.getComputedStyle(btn, "::before");
+      // The ::before width equals the bold-rendered label width.
+      // We don't actually need to read it — setting min-width via the
+      // ::before placeholder already locks the button width to the bold
+      // version of the label. This effect is reserved for future tweaks.
+      void before;
+    });
+  }, []);
 
   const navigateTo = useCallback((section: Section | null) => {
     setSelectedSection(section);
@@ -62,14 +76,14 @@ function HomeContent() {
           {aboutMe.description && (
             <section>
               <div
-                className="font-serif text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 [&_a]:underline [&_a]:text-zinc-900 dark:[&_a]:text-zinc-100 [&_a:hover]:text-zinc-600 dark:[&_a:hover]:text-zinc-400"
+                className="font-serif text-sm leading-relaxed text-muted [&_a]:underline [&_a]:text-foreground [&_a:hover]:text-muted"
                 dangerouslySetInnerHTML={{ __html: aboutMe.description }}
               />
             </section>
           )}
           {newsData.length > 0 && (
             <section id="recent-highlights">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-foreground">
                 Recent Highlights
               </h2>
               <div className="space-y-6">
@@ -77,7 +91,7 @@ function HomeContent() {
                   <div key={index}>
                     <NewsEntry news={news} />
                     {index < newsData.length - 1 && (
-                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 mt-6" />
+                      <div className="h-px bg-surface-2 mt-6" />
                     )}
                   </div>
                 ))}
@@ -93,7 +107,7 @@ function HomeContent() {
         return (
           newsData.length > 0 && (
             <section id="recent-highlights">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
                 Recent Highlights
               </h2>
               <div className="space-y-12">
@@ -101,7 +115,7 @@ function HomeContent() {
                   <div key={index}>
                     <NewsEntry news={news} />
                     {index < newsData.length - 1 && (
-                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
+                      <div className="h-px bg-surface-2 my-8" />
                     )}
                   </div>
                 ))}
@@ -118,7 +132,7 @@ function HomeContent() {
             <section id="timeline">
               {educationData.length > 0 && (
                 <>
-                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
                     Education
                   </h2>
                   <div className="space-y-12 mb-16">
@@ -130,7 +144,7 @@ function HomeContent() {
               )}
               {experienceData.length > 0 && (
                 <>
-                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
                     Experience
                   </h2>
                   <div className="space-y-12">
@@ -147,18 +161,18 @@ function HomeContent() {
         return (
           publicationData.length > 0 && (
             <section id="publications">
-              <h2 className="font-serif font-bold text-[1.1rem] tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] tracking-wide uppercase border-b border-foreground">
                 Publications
               </h2>
               <div className="flex justify-end items-center gap-2 mb-8">
-                <p className="text-sm text-zinc-600 italic opacity-35">* means co-first author</p>
+                <p className="text-sm text-muted italic opacity-35">* means co-first author</p>
               </div>
               <div className="space-y-12">
                 {publicationData.map((publication, index) => (
                   <div key={index}>
                     <PublicationEntry publication={publication} />
                     {index < publicationData.length - 1 && (
-                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
+                      <div className="h-px bg-surface-2 my-8" />
                     )}
                   </div>
                 ))}
@@ -173,7 +187,7 @@ function HomeContent() {
         return (
           portfolioData.length > 0 && (
             <section id="research">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
                 Research
               </h2>
               <div className="space-y-12">
@@ -181,7 +195,7 @@ function HomeContent() {
                   <div key={index}>
                     <PortfolioEntry key={index} portfolio={portfolio} />
                     {index < portfolioData.length - 1 && (
-                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
+                      <div className="h-px bg-surface-2 my-8" />
                     )}
                   </div>
                 ))}
@@ -193,7 +207,7 @@ function HomeContent() {
         return (
           awardData.length > 0 && (
             <section id="awards">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
                 Awards
               </h2>
               <div className="space-y-12">
@@ -201,7 +215,7 @@ function HomeContent() {
                   <div key={index}>
                     <AwardEntry key={index} award={award} />
                     {index < awardData.length - 1 && (
-                      <div className="h-px bg-zinc-200 dark:bg-zinc-700 my-8" />
+                      <div className="h-px bg-surface-2 my-8" />
                     )}
                   </div>
                 ))}
@@ -220,13 +234,13 @@ function HomeContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFCF8] dark:bg-[#111111]">
+    <div className="min-h-screen bg-background">
       {/* Quick Links Bar with Burger Menu */}
-      <div className="fixed left-0 top-0 z-50 w-full bg-[#FFFCF8] dark:bg-[#111111] flex items-center justify-between">
+      <div className="fixed left-0 top-0 z-50 w-full bg-background flex items-center justify-between">
         {/* Burger button for mobile */}
         <div className="flex items-center md:hidden ml-4">
           <button
-            className="p-2 z-10 italic text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 bg-[#FFFCF8] dark:bg-[#111111] rounded-lg shadow-md"
+            className="p-2 z-10 italic font-serif text-sm leading-relaxed text-foreground bg-background rounded-lg shadow-md"
             aria-label="Open quick links"
             onClick={() => setMenuOpen((open) => !open)}
           >
@@ -240,7 +254,7 @@ function HomeContent() {
             ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"}
             md:max-h-none md:py-2 md:opacity-100
             w-full
-            bg-[#FFFCF8] dark:bg-[#111111]
+            bg-background
             md:bg-transparent
             md:static
             absolute left-0 top-full
@@ -252,21 +266,25 @@ function HomeContent() {
             className={`
               flex flex-col items-center gap-4
               md:flex-row md:justify-center md:gap-2
-              text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 text-center
+              text-sm leading-relaxed text-foreground text-center font-serif
             `}
           >
             {/* <span className="hidden md:inline italic">Navigate →</span> */}
-            {quickLinks.map((link) => (
+            {quickLinks.map((link, idx) => (
               <button
                 key={link.label}
-                className={`underline hover:text-blue-900 dark:hover:text-blue-300 mx-2 italic bg-transparent border-none p-0 cursor-pointer
-      ${selectedSection === link.section ? "font-bold text-blue-900 dark:text-blue-300" : ""}
+                ref={(el) => {
+                  navRefs.current[idx] = el;
+                }}
+                data-label={link.label}
+                className={`nav-link hover:text-accent mx-2 italic bg-transparent border-none p-0 cursor-pointer
+      ${selectedSection === link.section ? "font-bold text-accent underline" : "text-foreground/50"}
     `}
                 onClick={() => {
                   navigateTo(link.section);
                 }}
               >
-                {link.label}
+                <span>{link.label}</span>
               </button>
             ))}
           </nav>

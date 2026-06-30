@@ -22,7 +22,7 @@ export function AwardEntry({
             )}
             <div className="flex flex-col flex-1">
                 <div className="flex flex-row gap-4 items-center mb-2">
-                    <p className="text-xs text-zinc-500 dark:text-zinc-500">
+                    <p className="text-xs text-muted">
                         <b>{award.year}</b> - {award.institution}
                     </p>
                     {/* {award.award && (
@@ -74,7 +74,7 @@ export function AwardEntry({
                     )}
                 </div> */}
                 {award.tldr && (
-                    <p className="text-sm italic text-zinc-600 dark:text-zinc-400 mt-4">
+                    <p className="text-sm italic text-muted mt-4">
                         {award.tldr}
                     </p>
                 )}

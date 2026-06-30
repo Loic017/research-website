@@ -30,7 +30,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               priority
               className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
             />
-            <div className="absolute inset-0 bg-white/50 dark:bg-zinc-800/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
         </div>
       )}
@@ -39,17 +39,17 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           {aboutMe.name}
         </h1>
         {aboutMe.altName && (
-          <p className="text-zinc-600 dark:text-zinc-400 text-md leading-relaxed tracking-wide mb-6">
+          <p className="text-muted text-md leading-relaxed tracking-wide mb-6">
             {aboutMe.altName}
           </p>
         )}
-        <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed tracking-wide uppercase mb-6">
+        <p className="text-muted text-xs leading-relaxed tracking-wide uppercase mb-6">
           {aboutMe.title}
           <br />
           {aboutMe.institutionUrl ? (
             <a
               href={aboutMe.institutionUrl}
-              className="hover:text-zinc-900 transition-colors duration-300"
+              className="hover:text-foreground transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -63,7 +63,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           {aboutMe.blogUrl && (
             <a
               href={aboutMe.blogUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-xs text-muted hover:text-foreground transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -77,7 +77,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           {aboutMe.cvUrl && (
             <a
               href={aboutMe.cvUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-xs text-muted hover:text-foreground transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -92,7 +92,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
         <div className="space-y-2">
           <a
             href={`mailto:${aboutMe.email}`}
-            className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -104,7 +104,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={aboutMe.googleScholarUrl}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -118,7 +118,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://twitter.com/${aboutMe.twitterUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -131,7 +131,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://github.com/${aboutMe.githubUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -145,7 +145,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://www.linkedin.com/in/${aboutMe.linkedinUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >

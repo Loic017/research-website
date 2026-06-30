@@ -4,34 +4,34 @@ import { useState, useEffect } from "react";
 
 export function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
-      document.documentElement.classList.add("dark");
-      setDark(true);
-    }
+    setDark(document.documentElement.classList.contains("dark"));
+    setMounted(true);
   }, []);
 
   const toggle = () => {
     const next = !dark;
     setDark(next);
-    if (next) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
   };
 
   return (
     <button
       onClick={toggle}
-      className="p-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-      aria-label="Toggle dark mode"
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      className="flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors"
     >
-      {dark ? <Sun size={18} /> : <Moon size={18} />}
+      {mounted ? (
+        <>
+          {dark ? <Sun size={14} /> : <Moon size={14} />}
+          <span>Switch to {dark ? "light" : "dark"} mode</span>
+        </>
+      ) : (
+        <span className="opacity-0">Switch to dark mode</span>
+      )}
     </button>
   );
 }

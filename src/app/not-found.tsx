@@ -26,11 +26,11 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFCF8] dark:bg-[#111111]">
-      <div className="fixed left-0 top-0 z-50 w-full bg-[#FFFCF8] dark:bg-[#111111] flex items-center justify-between">
+    <div className="min-h-screen bg-background">
+      <div className="fixed left-0 top-0 z-50 w-full bg-background flex items-center justify-between">
         <div className="flex items-center md:hidden ml-4">
           <button
-            className="p-2 z-10 italic text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 bg-[#FFFCF8] dark:bg-[#111111] rounded-lg shadow-md"
+            className="p-2 z-10 italic font-serif text-sm leading-relaxed text-foreground bg-background rounded-lg shadow-md"
             aria-label="Open quick links"
             onClick={() => setMenuOpen((open) => !open)}
           >
@@ -43,7 +43,7 @@ export default function NotFound() {
             ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"}
             md:max-h-none md:py-2 md:opacity-100
             w-full
-            bg-[#FFFCF8] dark:bg-[#111111]
+            bg-background
             md:bg-transparent
             md:static
             absolute left-0 top-full
@@ -55,13 +55,13 @@ export default function NotFound() {
             className={`
               flex flex-col items-center gap-4
               md:flex-row md:justify-center md:gap-2
-              text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 text-center
+              text-sm leading-relaxed text-foreground text-center font-serif
             `}
           >
             {quickLinks.map((link) => (
               <button
                 key={link.label}
-                className="underline hover:text-blue-900 dark:hover:text-blue-300 mx-2 italic bg-transparent border-none p-0 cursor-pointer"
+                className="underline hover:text-accent mx-2 italic bg-transparent border-none p-0 cursor-pointer"
                 onClick={() => navigateTo(link.section)}
               >
                 {link.label}
@@ -80,16 +80,16 @@ export default function NotFound() {
           </div>
           <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-12">
             <section>
-              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-black dark:border-zinc-600">
+              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-foreground">
                 Page Not Found
               </h2>
-              <p className="font-serif text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <p className="font-serif text-sm leading-relaxed text-foreground">
                 The page you are looking for does not exist or has been moved.
               </p>
-              <p className="font-serif text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 mt-4">
+              <p className="font-serif text-sm leading-relaxed text-foreground mt-4">
                 <Link
                   href="/"
-                  className="underline hover:text-zinc-900 dark:hover:text-zinc-100"
+                  className="underline hover:text-accent"
                 >
                   Return home
                 </Link>
