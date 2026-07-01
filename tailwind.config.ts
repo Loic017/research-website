@@ -6,23 +6,24 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
         surface: {
-          DEFAULT: "var(--surface)",
-          2: "var(--surface-2)",
+          DEFAULT: "rgb(var(--surface) / <alpha-value>)",
+          2: "rgb(var(--surface-2) / <alpha-value>)",
         },
-        muted: "var(--muted)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
         border: {
-          DEFAULT: "var(--border)",
+          DEFAULT: "rgb(var(--border) / <alpha-value>)",
         },
         accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-fg)",
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          foreground: "rgb(var(--accent-fg) / <alpha-value>)",
         },
       },
     },

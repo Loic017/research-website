@@ -9,8 +9,9 @@ export interface Publication {
   tldr?: string;
   imageUrl?: string;
   award?: string;
-  pub_type?: string; // "paper", "poster", "extended abstract", etc.
-  full_conf?: string; // Full conference name, if different from the short name
+  pub_type?: string;
+  full_conf?: string;
+  showLinks?: boolean;
 }
 
 export const publicationData: Publication[] = [
@@ -20,8 +21,8 @@ export const publicationData: Publication[] = [
     conference: "MOBISYS WORKSHOP (EIFCOM)",
     full_conf: "International Workshop on Mobile Systems with Efficient Foundation Models",
     title: "PERSE: A PERsonalised SEizure prediction system based on large-scale EEG foundation model",
-    authors: `<u>Loic Lemoine*</u>, Kha Huynh, Jonas Beuchert, Deepu John, Omer Rana, Nhat Pham`,
-    paperUrl: "",
+    authors: `<u>Loic Lemoine</u>, Kha Huynh, Jonas Beuchert, Deepu John, Omer Rana, Nhat Pham`,
+    paperUrl: "#",
     // codeUrl: "https://github.com/jsmith/scalable-causal-discovery",
     //bibtex: "https://arxiv.org/abs/2409.15476.bib",
     // tldr: "A look at continual learning on a Raspberry Pi for anomaly detection in electric vehicle charging infrastructure. Providing a comparison between a cloud-edge and edge-only approach where a model must learn a new attack.",

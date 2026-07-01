@@ -22,7 +22,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors"
+      className="flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors"
     >
       {mounted ? (
         <>

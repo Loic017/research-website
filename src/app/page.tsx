@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import { EducationEntry } from "@/components/education-entry";
 import { educationData } from "@/data/education";
 import { PublicationEntry } from "@/components/publication-entry";
@@ -16,6 +15,9 @@ import { portfolioData } from "@/data/portfolio";
 import { Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
+import { ExtraEntry } from "@/components/extra-entry";
+import { extraData } from "@/data/extra";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { useState, useCallback, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -25,6 +27,7 @@ const quickLinks = [
   { label: "Publications", section: Section.Publication },
   { label: "Timeline", section: Section.Timeline },
   { label: "Awards", section: Section.Award },
+  { label: "Extra", section: Section.Extra },
 ];
 
 function HomeContent() {
@@ -32,6 +35,7 @@ function HomeContent() {
   const searchParams = useSearchParams();
   const initialSection = searchParams.get("section") as Section | null;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showAllNews, setShowAllNews] = useState(false);
   const [selectedSection, setSelectedSection] = useState<Section | null>(
     initialSection && Object.values(Section).includes(initialSection as Section)
       ? initialSection
@@ -76,26 +80,31 @@ function HomeContent() {
           {aboutMe.description && (
             <section>
               <div
-                className="font-serif text-sm leading-relaxed text-muted [&_a]:underline [&_a]:text-foreground [&_a:hover]:text-muted"
+                className="font-serif text-base leading-relaxed text-muted [&_a]:underline [&_a]:text-foreground [&_a:hover]:text-muted"
                 dangerouslySetInnerHTML={{ __html: aboutMe.description }}
               />
             </section>
           )}
           {newsData.length > 0 && (
             <section id="recent-highlights">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-6 tracking-wide uppercase border-b border-foreground">
+              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                 Recent Highlights
               </h2>
-              <div className="space-y-6">
-                {newsData.map((news, index) => (
-                  <div key={index}>
-                    <NewsEntry news={news} />
-                    {index < newsData.length - 1 && (
-                      <div className="h-px bg-surface-2 mt-6" />
-                    )}
-                  </div>
+              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
+                {(showAllNews ? newsData : newsData.slice(0, 4)).map((news, index) => (
+                  <NewsEntry key={index} news={news} />
                 ))}
               </div>
+              {!showAllNews && newsData.length > 4 && (
+                <div className="flex justify-end items-center gap-2 mt-8">
+                  <button
+                    onClick={() => setShowAllNews(true)}
+                    className="text-base text-muted italic hover:text-accent bg-transparent border-none p-0 cursor-pointer opacity-30"
+                  >
+                    Show more →
+                  </button>
+                </div>
+              )}
             </section>
           )}
         </>
@@ -107,17 +116,12 @@ function HomeContent() {
         return (
           newsData.length > 0 && (
             <section id="recent-highlights">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
+              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                 Recent Highlights
               </h2>
-              <div className="space-y-12">
+              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
                 {newsData.map((news, index) => (
-                  <div key={index}>
-                    <NewsEntry news={news} />
-                    {index < newsData.length - 1 && (
-                      <div className="h-px bg-surface-2 my-8" />
-                    )}
-                  </div>
+                  <NewsEntry key={index} news={news} />
                 ))}
               </div>
               <div className="flex justify-end items-center gap-2 mt-16">
@@ -132,10 +136,10 @@ function HomeContent() {
             <section id="timeline">
               {educationData.length > 0 && (
                 <>
-                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
+                  <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                     Education
                   </h2>
-                  <div className="space-y-12 mb-16">
+                  <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
                     {educationData.map((education, index) => (
                       <EducationEntry key={index} education={education} />
                     ))}
@@ -144,10 +148,10 @@ function HomeContent() {
               )}
               {experienceData.length > 0 && (
                 <>
-                  <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
+                  <h2 className="font-serif font-bold text-xl mb-8 mt-12 tracking-wide uppercase border-b border-foreground">
                     Experience
                   </h2>
-                  <div className="space-y-12">
+                  <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
                     {experienceData.map((experience, index) => (
                       <ExperienceEntry key={index} experience={experience} />
                     ))}
@@ -161,20 +165,17 @@ function HomeContent() {
         return (
           publicationData.length > 0 && (
             <section id="publications">
-              <h2 className="font-serif font-bold text-[1.1rem] tracking-wide uppercase border-b border-foreground">
-                Publications
-              </h2>
-              <div className="flex justify-end items-center gap-2 mb-8">
-                <p className="text-sm text-muted italic opacity-35">* means co-first author</p>
+              <div className="flex justify-between items-baseline mb-8 border-b border-foreground">
+                <h2 className="font-serif font-bold text-xl tracking-wide uppercase">
+                  Publications
+                </h2>
+                <p className="text-base text-muted italic opacity-35 shrink-0">
+                  * means co-first author
+                </p>
               </div>
-              <div className="space-y-12">
+              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
                 {publicationData.map((publication, index) => (
-                  <div key={index}>
-                    <PublicationEntry publication={publication} />
-                    {index < publicationData.length - 1 && (
-                      <div className="h-px bg-surface-2 my-8" />
-                    )}
-                  </div>
+                  <PublicationEntry key={index} publication={publication} />
                 ))}
               </div>
               <div className="flex justify-end items-center gap-2 mt-2">
@@ -187,17 +188,15 @@ function HomeContent() {
         return (
           portfolioData.length > 0 && (
             <section id="research">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
+              <p className="text-sm text-muted mb-4 leading-relaxed">
+                A collection of previous and ongoing research projects.
+              </p>
+              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                 Research
               </h2>
-              <div className="space-y-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {portfolioData.map((portfolio, index) => (
-                  <div key={index}>
-                    <PortfolioEntry key={index} portfolio={portfolio} />
-                    {index < portfolioData.length - 1 && (
-                      <div className="h-px bg-surface-2 my-8" />
-                    )}
-                  </div>
+                  <PortfolioEntry key={index} index={index} portfolio={portfolio} />
                 ))}
               </div>
             </section>
@@ -207,24 +206,29 @@ function HomeContent() {
         return (
           awardData.length > 0 && (
             <section id="awards">
-              <h2 className="font-serif font-bold text-[1.1rem] mb-12 tracking-wide uppercase border-b border-foreground">
+              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                 Awards
               </h2>
-              <div className="space-y-12">
+              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
                 {awardData.map((award, index) => (
-                  <div key={index}>
-                    <AwardEntry key={index} award={award} />
-                    {index < awardData.length - 1 && (
-                      <div className="h-px bg-surface-2 my-8" />
-                    )}
-                  </div>
+                  <AwardEntry key={index} award={award} />
                 ))}
               </div>
-              <Image
-                src={aboutMe.bannerImage || ""}
-                alt={aboutMe.name}
-                className="object-fill rounded-xl mt-6 opacity-50 hover:opacity-0 transition-opacity duration-300"
-              />
+            </section>
+          )
+        );
+      case Section.Extra:
+        return (
+          extraData.length > 0 && (
+            <section id="extra">
+              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
+                Extra
+              </h2>
+              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
+                {extraData.map((extra, index) => (
+                  <ExtraEntry key={index} extra={extra} />
+                ))}
+              </div>
             </section>
           )
         );
@@ -235,12 +239,17 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top-left theme toggle */}
+      <div className="fixed left-4 top-3 z-[60] hidden md:block opacity-50 hover:opacity-100 transition-opacity duration-300">
+        <ThemeToggle />
+      </div>
+
       {/* Quick Links Bar with Burger Menu */}
       <div className="fixed left-0 top-0 z-50 w-full bg-background flex items-center justify-between">
         {/* Burger button for mobile */}
         <div className="flex items-center md:hidden ml-4">
           <button
-            className="p-2 z-10 italic font-serif text-sm leading-relaxed text-foreground bg-background rounded-lg shadow-md"
+            className="p-2 z-10 italic font-serif text-base leading-relaxed text-foreground bg-background rounded-lg shadow-md"
             aria-label="Open quick links"
             onClick={() => setMenuOpen((open) => !open)}
           >
@@ -266,7 +275,7 @@ function HomeContent() {
             className={`
               flex flex-col items-center gap-4
               md:flex-row md:justify-center md:gap-2
-              text-sm leading-relaxed text-foreground text-center font-serif
+              text-base leading-relaxed text-foreground text-center font-serif
             `}
           >
             {/* <span className="hidden md:inline italic">Navigate →</span> */}
@@ -303,8 +312,10 @@ function HomeContent() {
             </div>
           </div>
           {/* Right Column - Scrolling Content */}
-          <div className={`col-span-12 md:col-span-7 md:col-start-6 ${selectedSection === null ? 'space-y-12' : 'space-y-24'}`}>
-            {renderSection()}
+          <div className="col-span-12 md:col-span-7 md:col-start-6">
+            <div key={selectedSection ?? 'home'} className={`animate-fade-in ${selectedSection === null ? 'space-y-12' : ''}`}>
+              {renderSection()}
+            </div>
           </div>
         </div>
       </div>

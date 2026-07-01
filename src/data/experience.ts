@@ -12,7 +12,7 @@ export const experienceData: Experience[] = [
   {
     date: "2024—2026",
     title: "Research Assistant",
-    company: "AgileCPS Labs, Cardiff University",
+    company: "Agile Lab",
     description:
       "",
     companyUrl: "https://www.agilecps.org/",

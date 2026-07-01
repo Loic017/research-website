@@ -35,15 +35,15 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
         </div>
       )}
       <div className="w-2/3 md:w-full">
-        <h1 className="font-serif text-3xl font-light tracking-wide mb-3">
+        <h1 className="font-serif text-4xl font-light tracking-wide mb-3">
           {aboutMe.name}
         </h1>
         {aboutMe.altName && (
-          <p className="text-muted text-md leading-relaxed tracking-wide mb-6">
+          <p className="text-muted text-sm leading-relaxed tracking-wide mb-6">
             {aboutMe.altName}
           </p>
         )}
-        <p className="text-muted text-xs leading-relaxed tracking-wide uppercase mb-6">
+        <p className="text-muted text-sm leading-relaxed tracking-wide uppercase mb-6">
           {aboutMe.title}
           <br />
           {aboutMe.institutionUrl ? (
@@ -63,7 +63,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           {aboutMe.blogUrl && (
             <a
               href={aboutMe.blogUrl}
-              className="group inline-flex items-center gap-2 text-xs text-muted hover:text-foreground transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -74,7 +74,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <span className="tracking-wider uppercase">Notebook</span>
             </a>
           )}
-          {aboutMe.cvUrl && (
+          {/* {aboutMe.cvUrl && (
             <a
               href={aboutMe.cvUrl}
               className="group inline-flex items-center gap-2 text-xs text-muted hover:text-foreground transition-colors duration-300"
@@ -87,12 +87,12 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               />
               <span className="tracking-wider uppercase">CV</span>
             </a>
-          )}
+          )} */}
         </div>
         <div className="space-y-2">
           <a
             href={`mailto:${aboutMe.email}`}
-            className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -104,7 +104,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={aboutMe.googleScholarUrl}
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -118,7 +118,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://twitter.com/${aboutMe.twitterUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -131,7 +131,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://github.com/${aboutMe.githubUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -145,7 +145,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               <br />
               <a
                 href={`https://www.linkedin.com/in/${aboutMe.linkedinUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >

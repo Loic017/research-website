@@ -27,13 +27,13 @@ export const aboutMe: AboutMe = {
   title: "PhD CompSci",
   institution: "Cardiff University",
   // Note that links work in the description
-  description: `Hello there! 🌊 I'm Loic, a PhD student at Cardiff University 🏴󠁧󠁢󠁷󠁬󠁳󠁿 in the School of Computer Science and Informatics and with the <a href="https://www.agilecps.org/" target="_blank">AgileCPS Lab</a>.
+  description: `Hello there! 🌊 I'm Loic, a PhD student at Cardiff University 🏴󠁧󠁢󠁷󠁬󠁳󠁿 in the School of Computer Science and Informatics and with the <a href="https://www.agilecps.org/" target="_blank">AGILE Lab</a>.
   <ul style="margin-top:10px;margin-bottom:10px;padding-left:0.5rem">
-    <li style="margin:0 0 4px 0">> I finished my <b>BSc in Computer Science from Cardiff University</b> in 2024, graduating with First Class Honours. My dissertation on EEG seizure detection with TinyML was presented with the best undergraduate dissertation award.</li>
+    <li style="margin:0 0 4px 0">> I finished my <b>BSc in Computer Science from Cardiff University</b> in 2024, graduating with First Class Honours. My dissertation was presented with the best undergraduate dissertation award.</li>
     <li style="margin:0 0 4px 0">> I have completed an <b>MPhil</b> under the supervision of Dr Amir Javed, investigating machine learning intrusion detection for vehicular 🚙 systems.</li>
-    <li style="margin:0 0 4px 0">> I am undergoing a <b>PhD</b> under the supervision of Dr. Nick Pham. I am studying Continuous Stress Quantification with ⌚ Wearables.</li>
+    <li style="margin:0 0 4px 0;color:rgb(var(--accent))">> I recently started my <b>PhD</b> under the supervision of Dr. Nick Pham.</li>
   </ul>
-  My research primarily involves exploring machine learning systems for human sensing and edge computing.
+  My research primarily involves exploring machine learning, amongst other things, for human sensing and edge computing.
   `,
   email: "lorentelemoinel@cardiff.ac.uk",
   imageUrl: frontpage,
