@@ -33,7 +33,7 @@ export const awardData: Award[] = [
     },
     {
         year: "2024",
-        institution: "Global Wales, Cardiff University, and Vietnam National University - Ho Chi Minh University of Technology",
+        institution: "Global Wales, Cardiff University, and Vietnam National University",
         title: "First Prize, Student Poster Competition on “AI, Smart Healthcare, and IoT”",
         icon: "trophy",
         tldr: "Awarded for a poster on my dissertation study.",

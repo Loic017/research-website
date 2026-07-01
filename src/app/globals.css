@@ -82,6 +82,24 @@ body {
   animation: fade-in 0.3s ease-out;
 }
 
+@keyframes bounce-once {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.group:hover .project-link {
+  animation: bounce-once 0.4s ease-in-out;
+}
+
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.group:hover .pulse-on-hover {
+  animation: pulse-scale 3s ease-in-out infinite;
+}
+
 .item-separator {
   border-top: 1px solid currentColor;
   opacity: 0.07;

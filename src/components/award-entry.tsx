@@ -9,7 +9,7 @@ export function AwardEntry({ award }: { award: Award }) {
         {Icon && <Icon size={14} className="text-muted shrink-0" />}
         <span className="text-sm font-semibold text-accent uppercase tracking-wider">{award.year}</span>
         <span className="text-sm text-muted">·</span>
-        <span className="text-sm text-muted truncate">{award.institution}</span>
+        <span className="text-sm text-muted">{award.institution}</span>
       </div>
       <h3 className="font-serif text-base text-foreground mb-2">{award.title}</h3>
       {award.tldr && (

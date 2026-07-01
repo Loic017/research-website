@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Maximize2, X } from "lucide-react";
 import { Portfolio } from "@/data/portfolio";
 import { DISABLED_LINK_CLASSES, DISABLED_LINK_ICON_CLASSES } from "@/lib/constants";
@@ -24,7 +25,7 @@ export function PortfolioEntry({ index, portfolio }: { index: number; portfolio:
 
   return (
     <>
-      <div className="border border-border/60 dark:border-foreground/10 rounded-xl overflow-hidden flex flex-col hover:border-foreground/40 dark:hover:border-foreground/20 transition-colors duration-300">
+      <div className="group border border-border/60 dark:border-foreground/10 rounded-xl overflow-hidden flex flex-col hover:border-foreground/40 dark:hover:border-foreground/20 transition-colors duration-300">
         {portfolio.imageUrl && (
           <div
             className="relative mx-4 mt-4 rounded-xl overflow-hidden h-36 cursor-pointer group"
@@ -65,7 +66,18 @@ export function PortfolioEntry({ index, portfolio }: { index: number; portfolio:
 
         {portfolio.showMeta && (
           <div className="flex gap-4 mt-auto">
-            {portfolio.projectUrl && (
+            {portfolio.slug && portfolio.projectLink !== false ? (
+              <Link
+                href={`/research/${portfolio.slug}`}
+                className="project-link group/project-link inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors duration-300"
+              >
+                <ArrowUpRight
+                  size={10}
+                  className="group-hover/project-link:translate-x-0.5 group-hover/project-link:-translate-y-0.5 transition-transform duration-300"
+                />
+                <span className="tracking-wider uppercase">Project</span>
+              </Link>
+            ) : portfolio.slug && (
               <span className={`inline-flex items-center gap-1.5 text-xs ${DISABLED_LINK_CLASSES}`}>
                 <ArrowUpRight size={10} className={DISABLED_LINK_ICON_CLASSES} />
                 <span className="tracking-wider uppercase">Project</span>

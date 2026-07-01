@@ -18,23 +18,13 @@ import { awardData } from "@/data/award";
 import { ExtraEntry } from "@/components/extra-entry";
 import { extraData } from "@/data/extra";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useState, useCallback, useEffect, useRef, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-
-const quickLinks = [
-  { label: "Start", section: null },
-  { label: "Research", section: Section.Portfolio },
-  { label: "Publications", section: Section.Publication },
-  { label: "Timeline", section: Section.Timeline },
-  { label: "Awards", section: Section.Award },
-  { label: "Extra", section: Section.Extra },
-];
+import { useState, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { NavBar } from "@/components/nav-bar";
 
 function HomeContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const initialSection = searchParams.get("section") as Section | null;
-  const [menuOpen, setMenuOpen] = useState(false);
   const [showAllNews, setShowAllNews] = useState(false);
   const [selectedSection, setSelectedSection] = useState<Section | null>(
     initialSection && Object.values(Section).includes(initialSection as Section)
@@ -42,23 +32,8 @@ function HomeContent() {
       : null
   );
 
-  const navRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  useEffect(() => {
-    navRefs.current.forEach((btn) => {
-      if (!btn) return;
-      const before = window.getComputedStyle(btn, "::before");
-      // The ::before width equals the bold-rendered label width.
-      // We don't actually need to read it — setting min-width via the
-      // ::before placeholder already locks the button width to the bold
-      // version of the label. This effect is reserved for future tweaks.
-      void before;
-    });
-  }, []);
-
   const navigateTo = useCallback((section: Section | null) => {
     setSelectedSection(section);
-    setMenuOpen(false);
     const params = new URLSearchParams(window.location.search);
     if (section) {
       params.set("section", section);
@@ -244,61 +219,7 @@ function HomeContent() {
         <ThemeToggle />
       </div>
 
-      {/* Quick Links Bar with Burger Menu */}
-      <div className="fixed left-0 top-0 z-50 w-full bg-background flex items-center justify-between">
-        {/* Burger button for mobile */}
-        <div className="flex items-center md:hidden ml-4">
-          <button
-            className="p-2 z-10 italic font-serif text-base leading-relaxed text-foreground bg-background rounded-lg shadow-md"
-            aria-label="Open quick links"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? "✕ Close ←" : "🍔 Menu →"}
-          </button>
-        </div>
-        {/* Quick links: vertical pane on mobile, horizontal bar on desktop */}
-        <div
-          className={`
-            transition-all duration-300
-            ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"}
-            md:max-h-none md:py-2 md:opacity-100
-            w-full
-            bg-background
-            md:bg-transparent
-            md:static
-            absolute left-0 top-full
-            md:top-0
-            shadow-sm
-          `}
-        >
-          <nav
-            className={`
-              flex flex-col items-center gap-4
-              md:flex-row md:justify-center md:gap-2
-              text-base leading-relaxed text-foreground text-center font-serif
-            `}
-          >
-            {/* <span className="hidden md:inline italic">Navigate →</span> */}
-            {quickLinks.map((link, idx) => (
-              <button
-                key={link.label}
-                ref={(el) => {
-                  navRefs.current[idx] = el;
-                }}
-                data-label={link.label}
-                className={`nav-link hover:text-accent mx-2 italic bg-transparent border-none p-0 cursor-pointer
-      ${selectedSection === link.section ? "font-bold text-accent underline" : "text-foreground/50"}
-    `}
-                onClick={() => {
-                  navigateTo(link.section);
-                }}
-              >
-                <span>{link.label}</span>
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
+      <NavBar activeSection={selectedSection} onNavigate={navigateTo} />
       <div className="max-w-screen-lg mx-auto px-8 py-28">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-2">

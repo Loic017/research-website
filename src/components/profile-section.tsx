@@ -19,22 +19,44 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
   }
 
   return (
-    <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-4 md:space-y-8">
-      {aboutMe.imageUrl && (
-        <div className="w-1/3 md:w-full flex-shrink-0">
-          <div className="relative max-h-[45vh] md:w-[65%] aspect-[3/4] group overflow-hidden">
-            <Image
-              src={aboutMe.imageUrl}
-              alt={aboutMe.name}
-              fill
-              priority
-              className="object-cover rounded-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-            />
-            <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <>
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <filter id="ink-bleed" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="4" result="noise">
+              <animate attributeName="baseFrequency" values="0.006;0.011;0.005;0.009;0.006" dur="10s" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G" result="warped"/>
+            <feGaussianBlur stdDeviation="1.5" in="warped" result="blurred"/>
+            <feColorMatrix type="matrix" values="1.15 0 0 0 -0.08  1.1 0 0 0 -0.06  0.95 0 0 0 -0.04  0 0 0 0.85 0" in="blurred"/>
+          </filter>
+        </defs>
+      </svg>
+      <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-4 md:space-y-8">
+        {aboutMe.imageUrl && (
+          <div className="w-1/3 md:w-full flex-shrink-0">
+            <div className="relative max-h-[45vh] md:w-[65%] aspect-[3/4] group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-500">
+              <Image
+                src={aboutMe.imageUrl}
+                alt={aboutMe.name}
+                fill
+                priority
+                className="object-cover transition-opacity duration-700 group-hover:opacity-0"
+              />
+              <Image
+                src={aboutMe.imageUrl}
+                alt={aboutMe.name}
+                fill
+                priority
+                className="object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 pulse-on-hover"
+                style={{ filter: 'url(#ink-bleed)' }}
+              />
+              <div className="absolute inset-0 pointer-events-none translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+              <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
           </div>
-        </div>
-      )}
-      <div className="w-2/3 md:w-full">
+        )}
+        <div className="w-2/3 md:w-full">
         <h1 className="font-serif text-4xl font-light tracking-wide mb-3">
           {aboutMe.name}
         </h1>
@@ -155,7 +177,8 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             </>
           )}
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
