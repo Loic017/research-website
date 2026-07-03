@@ -34,10 +34,10 @@ export const portfolioData: Portfolio[] = [
   {
     title: "Personalisable Seizure Prediction",
     description:
-      'Initial work published to the <a href="/?section=publication">EIFCOM Workshop</a> @ ACM MobiCom 2025.',
+      'Initial work published to the <a href="/?section=publication">EIFCOM Workshop</a> @ ACM Mobisys 2026.',
     technologies: ["Biosignals", "Wearables", "Foundation Models"],
     slug: "personalised-seizure-prediction",
-    body: "<p>This project explores personalised seizure prediction using foundation models and wearable biosignal data. Initial findings were presented at the EIFCOM Workshop co-located with ACM MobiCom 2025.</p>",
+    body: "<p>This project explores personalised seizure prediction using foundation models and wearable biosignal data. Initial findings were presented at the EIFCOM Workshop co-located with ACM Mobisys 2026.</p>",
     imageUrl: seizure_prediction,
     gallery: [seizure_prediction],
     showMeta: true,

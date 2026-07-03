@@ -21,7 +21,7 @@ export const newsData: News[] = [
   },
   {
     date: "April 2026",
-    title: "Workshop Paper @ Mobisys 2026 📄",
+    title: "Workshop Paper @ Mobisys'26 📄",
     description: "My paper 'PERSE: A PERsonalised SEizure prediction system based on large-scale EEG foundation model' has been accepted to a Mobisys workshop (EIFCOM)!",
     icon: "file-text",
     theme: "Publication",
