@@ -11,47 +11,129 @@ import { ExperienceEntry } from "@/components/experience-entry";
 import { experienceData } from "@/data/experience";
 import { PortfolioEntry } from "@/components/portfolio-entry";
 import { portfolioData } from "@/data/portfolio";
-// import { sectionOrder, Section } from "@/data/section-order";
+import { Portfolio } from "@/data/portfolio";
 import { Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
-import { ExtraEntry } from "@/components/extra-entry";
 import { extraData } from "@/data/extra";
+import { ExtraEntry } from "@/components/extra-entry";
+import { ProjectDetail } from "@/components/project-detail";
+import { AllNewsView } from "@/components/all-news-view";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useState, useCallback, Suspense } from "react";
+import { useState, useCallback, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { NavBar } from "@/components/nav-bar";
 
 function HomeContent() {
   const searchParams = useSearchParams();
   const initialSection = searchParams.get("section") as Section | null;
-  const [showAllNews, setShowAllNews] = useState(false);
+  const initialProjectSlug = searchParams.get("project");
+  const [showAllNewsView, setShowAllNewsView] = useState(false);
+  const [newsViewTransition, setNewsViewTransition] = useState<'idle' | 'exiting' | 'entering'>('idle');
+  const isNewsViewTransitioning = useRef(false);
   const [selectedSection, setSelectedSection] = useState<Section | null>(
     initialSection && Object.values(Section).includes(initialSection as Section)
       ? initialSection
       : null
   );
+  const [selectedProject, setSelectedProject] = useState<Portfolio | null>(
+    initialProjectSlug ? portfolioData.find((p) => p.slug === initialProjectSlug) ?? null : null
+  );
+  const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
+  const isTransitioning = useRef(false);
 
-  const navigateTo = useCallback((section: Section | null) => {
-    setSelectedSection(section);
+  const navigateTo = useCallback((section: Section | null, projectSlug?: string) => {
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+
     const params = new URLSearchParams(window.location.search);
     if (section) {
       params.set("section", section);
     } else {
       params.delete("section");
     }
+    if (projectSlug) {
+      params.set("project", projectSlug);
+    } else {
+      params.delete("project");
+    }
     const newUrl = params.toString()
       ? `${window.location.pathname}?${params.toString()}`
       : window.location.pathname;
     window.history.replaceState(null, "", newUrl);
+
+    setTransitionState('exiting');
+
+    setTimeout(() => {
+      setSelectedSection(section);
+      if (section === Section.Portfolio && projectSlug) {
+        setSelectedProject(portfolioData.find((p) => p.slug === projectSlug) ?? null);
+      } else {
+        setSelectedProject(null);
+      }
+      setTransitionState('entering');
+
+      setTimeout(() => {
+        setTransitionState('idle');
+        isTransitioning.current = false;
+      }, 300);
+    }, 150);
+  }, []);
+
+  const closeProject = useCallback(() => {
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("section", Section.Portfolio);
+    params.delete("project");
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    window.history.replaceState(null, "", newUrl);
+
+    setTransitionState('exiting');
+
+    setTimeout(() => {
+      setSelectedProject(null);
+      setTransitionState('entering');
+
+      setTimeout(() => {
+        setTransitionState('idle');
+        isTransitioning.current = false;
+      }, 300);
+    }, 150);
   }, []);
 
   // Helper to render the selected section
   const renderSection = () => {
     if (selectedSection === null) {
-      // Show about section and recent highlights
+      if (showAllNewsView) {
+        return (
+          <div className={newsViewTransition === 'entering' ? 'animate-fade-in-up' : ''}>
+            <AllNewsView
+              news={newsData}
+              onBack={() => {
+                if (isNewsViewTransitioning.current) return;
+                isNewsViewTransitioning.current = true;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setNewsViewTransition('exiting');
+                setTimeout(() => {
+                  setShowAllNewsView(false);
+                  setNewsViewTransition('entering');
+                  setTimeout(() => {
+                    setNewsViewTransition('idle');
+                    isNewsViewTransitioning.current = false;
+                  }, 300);
+                }, 150);
+              }}
+            />
+          </div>
+        );
+      }
+
       return (
-        <>
+        <div className={`${newsViewTransition === 'exiting' ? 'animate-fade-out-up' : ''} space-y-12`}>
           {aboutMe.description && (
             <section>
               <div
@@ -66,14 +148,27 @@ function HomeContent() {
                 Recent Highlights
               </h2>
               <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
-                {(showAllNews ? newsData : newsData.slice(0, 4)).map((news, index) => (
+                {newsData.slice(0, 4).map((news, index) => (
                   <NewsEntry key={index} news={news} />
                 ))}
               </div>
-              {!showAllNews && newsData.length > 4 && (
+              {newsData.length > 4 && (
                 <div className="flex justify-end items-center gap-2 mt-8">
                   <button
-                    onClick={() => setShowAllNews(true)}
+                    onClick={() => {
+                      if (isNewsViewTransitioning.current) return;
+                      isNewsViewTransitioning.current = true;
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setNewsViewTransition('exiting');
+                      setTimeout(() => {
+                        setShowAllNewsView(true);
+                        setNewsViewTransition('entering');
+                        setTimeout(() => {
+                          setNewsViewTransition('idle');
+                          isNewsViewTransitioning.current = false;
+                        }, 300);
+                      }, 150);
+                    }}
                     className="text-base text-muted italic hover:text-accent bg-transparent border-none p-0 cursor-pointer opacity-30"
                   >
                     Show more →
@@ -82,7 +177,7 @@ function HomeContent() {
               )}
             </section>
           )}
-        </>
+        </div>
       );
     }
 
@@ -160,6 +255,9 @@ function HomeContent() {
           )
         );
       case Section.Portfolio:
+        if (selectedProject) {
+          return <ProjectDetail project={selectedProject} onBack={closeProject} />;
+        }
         return (
           portfolioData.length > 0 && (
             <section id="research">
@@ -171,7 +269,7 @@ function HomeContent() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {portfolioData.map((portfolio, index) => (
-                  <PortfolioEntry key={index} index={index} portfolio={portfolio} />
+                  <PortfolioEntry key={index} index={index} portfolio={portfolio} onProjectClick={(slug) => { window.scrollTo({ top: 0, behavior: 'smooth' }); navigateTo(Section.Portfolio, slug); }} />
                 ))}
               </div>
             </section>
@@ -234,7 +332,7 @@ function HomeContent() {
           </div>
           {/* Right Column - Scrolling Content */}
           <div className="col-span-12 md:col-span-7 md:col-start-6">
-            <div key={selectedSection ?? 'home'} className={`animate-fade-in ${selectedSection === null ? 'space-y-12' : ''}`}>
+            <div className={`${transitionState === 'exiting' ? 'animate-fade-out-up' : transitionState === 'entering' ? 'animate-fade-in-up' : ''} ${selectedSection === null ? 'space-y-12' : ''}`}>
               {renderSection()}
             </div>
           </div>

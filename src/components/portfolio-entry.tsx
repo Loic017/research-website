@@ -5,7 +5,7 @@ import { ArrowUpRight, Maximize2, X } from "lucide-react";
 import { Portfolio } from "@/data/portfolio";
 import { DISABLED_LINK_CLASSES, DISABLED_LINK_ICON_CLASSES } from "@/lib/constants";
 
-export function PortfolioEntry({ index, portfolio }: { index: number; portfolio: Portfolio }) {
+export function PortfolioEntry({ index, portfolio, onProjectClick }: { index: number; portfolio: Portfolio; onProjectClick?: (slug: string) => void }) {
   const [showLightbox, setShowLightbox] = useState(false);
 
   const close = useCallback(() => setShowLightbox(false), []);
@@ -69,6 +69,7 @@ export function PortfolioEntry({ index, portfolio }: { index: number; portfolio:
             {portfolio.slug && portfolio.projectLink !== false ? (
               <Link
                 href={`/research/${portfolio.slug}`}
+                onClick={onProjectClick ? (e) => { e.preventDefault(); onProjectClick(portfolio.slug!); } : undefined}
                 className="project-link group/project-link inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors duration-300"
               >
                 <ArrowUpRight

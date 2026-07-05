@@ -18,12 +18,14 @@ export interface AboutMe {
   linkedinUsername?: string;
   funDescription?: string; // Gets placed in the left sidebar
   secretDescription?: string; // Gets placed in the bottom
+  pronunciation?: string;
   altName?: string;
   institutionUrl?: string;
 }
 
 export const aboutMe: AboutMe = {
   name: "Loic Lorente Lemoine",
+  pronunciation: "/ˈloʊ.ɪk lɔːˈrɛn.teɪ ləˈmwɑːn/",
   title: "PhD CompSci",
   institution: "Cardiff University",
   // Note that links work in the description

@@ -43,6 +43,6 @@ export const awardData: Award[] = [
         institution: "Cardiff University",
         title: "Best Dissertation, School of Computer Science and Informatics",
         icon: "trophy",
-        tldr: "Awarded for my dissertation: 'Design a tiny machine learning model to detect epileptic seizures on wearables'",
+        tldr: "Awarded for my dissertation: 'Design a tiny machine learning model to detect epileptic seizures on wearables'.",
     }
 ];

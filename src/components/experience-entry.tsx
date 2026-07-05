@@ -30,6 +30,13 @@ export function ExperienceEntry({ experience }: { experience: Experience }) {
             Manager: {experience.manager}
           </p>
         )}
+        {experience.details && (
+          <ul className="list-none text-sm text-muted/80 mt-1 space-y-0.5">
+            {experience.details.map((d, i) => (
+              <li key={i} className="before:content-['›'] before:mr-2 before:text-accent/60"><span className="italic">{d}</span></li>
+            ))}
+          </ul>
+        )}
         {experience.description && (
           <p className="text-base text-muted leading-relaxed mt-2">
             {experience.description}

@@ -32,7 +32,7 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           </filter>
         </defs>
       </svg>
-      <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-4 md:space-y-8">
+      <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-2 md:space-y-4">
         {aboutMe.imageUrl && (
           <div className="w-1/3 md:w-full flex-shrink-0">
             <div className="relative max-h-[45vh] md:w-[65%] aspect-[3/4] group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-500">
@@ -57,9 +57,12 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
           </div>
         )}
         <div className="w-2/3 md:w-full">
-        <h1 className="font-serif text-4xl font-light tracking-wide mb-3">
+        <h1 className="font-serif text-4xl font-light tracking-wide mb-1.5">
           {aboutMe.name}
         </h1>
+        {aboutMe.pronunciation && (
+          <p className="text-xs italic text-muted opacity-60 mb-1.5">{aboutMe.pronunciation}</p>
+        )}
         {aboutMe.altName && (
           <p className="text-muted text-sm leading-relaxed tracking-wide mb-6">
             {aboutMe.altName}

@@ -5,6 +5,7 @@ export interface Education {
   advisor?: string;
   thesis?: string;
   thesisUrl?: string;
+  details?: string[];
 }
 
 export const educationData: Education[] = [
@@ -21,12 +22,14 @@ export const educationData: Education[] = [
     institution: "Cardiff University",
     degree: "MPhil Computer Science",
     advisor: "Dr. Amir Javed <small>(School of Computer Science)</small>, Dr. Nick Pham <small>(School of Computer Science)</small>",
+    details: ["Viva passed with no corrections"],
     thesis: "Machine Learning Intrusion Detection Sytems for Vehicular Networks"
   },
   {
     year: "2021—2024",
     institution: "Cardiff University",
     degree: "BSc Computer Science",
+    details: ["First Class Honours", "Best Dissertation (93%)"],
     thesis: "TinyML for wearable seizure detection",
     // Optional links to thesis
     thesisUrl: "https://drive.google.com/file/d/1W1lrBvBA_GrSyujQJyJSLgKLstS-cuaG/view?usp=sharing"

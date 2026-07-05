@@ -13,6 +13,13 @@ export function EducationEntry({ education }: { education: Education }) {
             dangerouslySetInnerHTML={{ __html: `Advisor: ${education.advisor}` }}
           />
         )}
+        {education.details && (
+          <ul className="list-none text-sm text-muted/80 mt-1 space-y-0.5">
+            {education.details.map((d, i) => (
+              <li key={i} className="before:content-['›'] before:mr-2 before:text-accent/60"><span className="italic">{d}</span></li>
+            ))}
+          </ul>
+        )}
         {/* thesis hidden — uncomment to restore */}
         {/* {education.thesis && (
           <p className="text-sm text-muted mt-2 italic">

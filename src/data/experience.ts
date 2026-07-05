@@ -6,6 +6,7 @@ export interface Experience {
   advisor?: string;
   manager?: string;
   companyUrl?: string;
+  details?: string[];
 }
 
 export const experienceData: Experience[] = [
@@ -15,6 +16,9 @@ export const experienceData: Experience[] = [
     company: "Agile Lab",
     description:
       "",
+    details: [
+      "Contributed to two research projects within the AGILE Lab",
+    ],
     companyUrl: "https://www.agilecps.org/",
   },
 ];

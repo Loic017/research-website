@@ -4,16 +4,26 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Portfolio } from "@/data/portfolio";
 
-export function ProjectDetail({ project }: { project: Portfolio }) {
+export function ProjectDetail({ project, onBack }: { project: Portfolio; onBack?: () => void }) {
   return (
-    <div className="animate-fade-in space-y-8">
-      <Link
-        href="/?section=portfolio"
-        className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors duration-300"
-      >
-        <ArrowLeft size={14} />
-        <span className="tracking-wider uppercase">Back to Research</span>
-      </Link>
+    <div className="space-y-8">
+      {onBack ? (
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors duration-300 bg-transparent border-none p-0 cursor-pointer"
+        >
+          <ArrowLeft size={14} />
+          <span className="tracking-wider uppercase">Back to Research</span>
+        </button>
+      ) : (
+        <Link
+          href="/?section=portfolio"
+          className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors duration-300"
+        >
+          <ArrowLeft size={14} />
+          <span className="tracking-wider uppercase">Back to Research</span>
+        </Link>
+      )}
 
       <h2 className="font-serif font-bold text-xl tracking-wide uppercase border-b border-foreground pb-2">
         {project.title}
