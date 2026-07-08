@@ -15,8 +15,8 @@ import { Portfolio } from "@/data/portfolio";
 import { Section } from "@/data/section-order";
 import { AwardEntry } from "@/components/award-entry";
 import { awardData } from "@/data/award";
-import { extraData } from "@/data/extra";
-import { ExtraEntry } from "@/components/extra-entry";
+import { extraBlocks } from "@/data/extra";
+import { ExtraSection } from "@/components/extra";
 import { ProjectDetail } from "@/components/project-detail";
 import { AllNewsView } from "@/components/all-news-view";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -204,6 +204,9 @@ function HomeContent() {
         return (
           (educationData.length > 0 || experienceData.length > 0) && (
             <section id="timeline">
+              <p className="text-sm text-muted mb-4 leading-relaxed">
+                My academic and professional timeline.
+              </p>
               {educationData.length > 0 && (
                 <>
                   <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
@@ -235,6 +238,9 @@ function HomeContent() {
         return (
           publicationData.length > 0 && (
             <section id="publications">
+              <p className="text-sm text-muted mb-4 leading-relaxed">
+                A list of my published works.
+              </p>
               <div className="flex justify-between items-baseline mb-8 border-b border-foreground">
                 <h2 className="font-serif font-bold text-xl tracking-wide uppercase">
                   Publications
@@ -279,6 +285,9 @@ function HomeContent() {
         return (
           awardData.length > 0 && (
             <section id="awards">
+              <p className="text-sm text-muted mb-4 leading-relaxed">
+                A list of honours, scholarships, and any recognitions.
+              </p>
               <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
                 Awards
               </h2>
@@ -292,16 +301,9 @@ function HomeContent() {
         );
       case Section.Extra:
         return (
-          extraData.length > 0 && (
+          extraBlocks.length > 0 && (
             <section id="extra">
-              <h2 className="font-serif font-bold text-xl mb-8 tracking-wide uppercase border-b border-foreground">
-                Extra
-              </h2>
-              <div className="space-y-6 [&>*+*]:item-separator [&>*+*]:pt-6">
-                {extraData.map((extra, index) => (
-                  <ExtraEntry key={index} extra={extra} />
-                ))}
-              </div>
+              <ExtraSection blocks={extraBlocks} />
             </section>
           )
         );

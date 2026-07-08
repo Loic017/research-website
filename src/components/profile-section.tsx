@@ -1,6 +1,6 @@
 import Image from "next/image";
 import {
-  Github,
+  FlaskConical,
   Linkedin,
   Mail,
   Twitter,
@@ -124,6 +124,20 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             <Mail size={14} />
             {aboutMe.email}
           </a>
+          {aboutMe.labUrl && (
+            <>
+              <br />
+              <a
+                href={aboutMe.labUrl}
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FlaskConical size={14} />
+                {aboutMe.labUrl}
+              </a>
+            </>
+          )}
           {aboutMe.googleScholarUrl && (
             <>
               <br />
@@ -148,20 +162,6 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
                 rel="noopener noreferrer"
               >
                 <Twitter size={14} />@{aboutMe.twitterUsername}
-              </a>
-            </>
-          )}
-          {aboutMe.githubUsername && (
-            <>
-              <br />
-              <a
-                href={`https://github.com/${aboutMe.githubUsername}`}
-                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github size={14} />
-                github.com/{aboutMe.githubUsername}
               </a>
             </>
           )}

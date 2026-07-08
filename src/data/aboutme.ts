@@ -12,6 +12,7 @@ export interface AboutMe {
   bannerImage?: string | StaticImageData;
   blogUrl?: string;
   cvUrl?: string;
+  labUrl?: string;
   googleScholarUrl?: string;
   twitterUsername?: string;
   githubUsername?: string;
@@ -41,6 +42,7 @@ export const aboutMe: AboutMe = {
   imageUrl: frontpage,
   bannerImage: banner,
   // googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
+  labUrl: "https://www.agilecps.org/",
   githubUsername: "loic-lemon",
   linkedinUsername: "lemoineloic",
   // twitterUsername: "janesmith",
