@@ -124,20 +124,6 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             <Mail size={14} />
             {aboutMe.email}
           </a>
-          {aboutMe.labUrl && (
-            <>
-              <br />
-              <a
-                href={aboutMe.labUrl}
-                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FlaskConical size={14} />
-                {aboutMe.labUrl}
-              </a>
-            </>
-          )}
           {aboutMe.googleScholarUrl && (
             <>
               <br />
@@ -176,6 +162,20 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               >
                 <Linkedin size={14} />
                 linkedin.com/in/{aboutMe.linkedinUsername}
+              </a>
+            </>
+          )}
+          {aboutMe.labUrl && (
+            <>
+              <br />
+              <a
+                href={aboutMe.labUrl}
+                className="inline-flex items-center gap-2 text-base text-muted hover:text-foreground transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FlaskConical size={14} />
+                {aboutMe.labUrl}
               </a>
             </>
           )}
