@@ -54,20 +54,20 @@ export default function RootLayout({
       >
         <main className="">{children}</main>
         <footer className="border-t border-border bg-background">
-          <div className="flex flex-row mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between ">
-            <div className="mb-4 text-base text-muted">
+          <div className="flex flex-row mx-auto max-w-7xl px-6 py-8 md:flex md:items-start md:justify-between ">
+            <div className="text-sm text-muted">
               <p>
                 © {new Date().getFullYear()} {aboutMe.name}.
               </p>
               {aboutMe.secretDescription && (
-                <p className="text-sm text-muted mt-4">
+                <p className="text-sm text-muted mt-2">
                   {aboutMe.secretDescription}
                 </p>
               )}
             </div>
-            <div className="mb-4 flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <ThemeToggle />
-              <p className="text-base text-muted justify">
+              <p className="text-sm text-muted justify">
                 Built with{" "}
                 <a
                   href="https://github.com/tovacinni/research-website-template"

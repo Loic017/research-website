@@ -31,7 +31,7 @@ export const publicationData: Publication[] = [
     // award: "🏆 Best Paper Award",
     // if you have an image in public/images, you can use it like this:
     // imageUrl: "/images/publication-image.jpg"
-    pub_type: "Extended Abstract",
+    pub_type: "Workshop Paper",
   },
   {
     year: "2025",
@@ -74,7 +74,7 @@ export const publicationData: Publication[] = [
     title: "Epileptic seizure detection with Tiny Machine Learning - a Preliminary Study",
     authors: `<u>Loic Lemoine</u>, Nhat Pham`,
     paperUrl: "https://mobiuk.org/2024/abstract/S4_P2_Lemoine_Seizure.pdf",
-    codeUrl: "https://fountain.lorentel.com/projects/Epileptic-Seizure-Detection-with-Tiny-Machine-Learning",
+    // codeUrl: "https://fountain.lorentel.com/projects/Epileptic-Seizure-Detection-with-Tiny-Machine-Learning",
     // tldr: "CNN models are trained on melspectrogram EEG data to detect three different types of common epileptic seizures. These models are compressed and deployed onto an Arduino platform.",
     pub_type: "Extended Abstract",
   },

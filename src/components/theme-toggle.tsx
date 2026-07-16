@@ -27,10 +27,10 @@ export function ThemeToggle() {
       {mounted ? (
         <>
           {dark ? <Sun size={14} /> : <Moon size={14} />}
-          <span>Switch to {dark ? "light" : "dark"} mode</span>
+          <span className="text-xs italic">Switch to {dark ? "light" : "dark"} mode</span>
         </>
       ) : (
-        <span className="opacity-0">Switch to dark mode</span>
+        <span className="opacity-0 text-xs italic">Switch to dark mode</span>
       )}
     </button>
   );
