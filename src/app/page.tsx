@@ -20,7 +20,8 @@ import { ExtraSection } from "@/components/extra";
 import { ProjectDetail } from "@/components/project-detail";
 import { AllNewsView } from "@/components/all-news-view";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useState, useCallback, useRef, Suspense } from "react";
+import { ExtraTypingRacer } from "@/components/extra/extra-typing-racer";
+import { useState, useCallback, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { NavBar } from "@/components/nav-bar";
 
@@ -41,6 +42,28 @@ function HomeContent() {
   );
   const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
   const isTransitioning = useRef(false);
+  const [showSecretGame, setShowSecretGame] = useState(false);
+
+  useEffect(() => {
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let index = 0;
+
+    const handler = (e: KeyboardEvent) => {
+      const key = e.key;
+      if (key === konamiCode[index]) {
+        index++;
+        if (index === konamiCode.length) {
+          index = 0;
+          setShowSecretGame(true);
+        }
+      } else {
+        index = 0;
+      }
+    };
+
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   const navigateTo = useCallback((section: Section | null, projectSlug?: string) => {
     if (isTransitioning.current) return;
@@ -334,9 +357,13 @@ function HomeContent() {
           </div>
           {/* Right Column - Scrolling Content */}
           <div className="col-span-12 md:col-span-7 md:col-start-6">
-            <div className={`${transitionState === 'exiting' ? 'animate-fade-out-up' : transitionState === 'entering' ? 'animate-fade-in-up' : ''} ${selectedSection === null ? 'space-y-12' : ''}`}>
-              {renderSection()}
-            </div>
+            {showSecretGame ? (
+              <ExtraTypingRacer onBack={() => setShowSecretGame(false)} />
+            ) : (
+              <div className={`${transitionState === 'exiting' ? 'animate-fade-out-up' : transitionState === 'entering' ? 'animate-fade-in-up' : ''} ${selectedSection === null ? 'space-y-12' : ''}`}>
+                {renderSection()}
+              </div>
+            )}
           </div>
         </div>
       </div>

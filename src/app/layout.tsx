@@ -58,6 +58,9 @@ export default function RootLayout({
             <div className="text-sm text-muted">
               <p>
                 © {new Date().getFullYear()} {aboutMe.name}.
+                <span className="text-xs text-foreground/[0.05] select-none ml-2 tracking-[0.3em] font-mono">
+                  ↑ ↑ ↓ ↓ ← → ← → b a
+                </span>
               </p>
               {aboutMe.secretDescription && (
                 <p className="text-sm text-muted mt-2">
